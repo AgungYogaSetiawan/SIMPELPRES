@@ -18,7 +18,7 @@ if(isset($_SESSION['id_user'])){
     <meta name="author" content="">
     <link rel="icon" type="image/png" href="../img/logo_pemko_bjm2.png">
 
-    <title>Login - SIMPELKPM</title>
+    <title>Login - SIMPELPRES</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -49,7 +49,7 @@ if(isset($_SESSION['id_user'])){
                 <p align="center">
                     <image src="../img/logo_pemko_bjm2.png" style="height:200px;">
                 </p>
-                <h2 align="center" class="text-white">Login <b>SIMPELKPM</b><b></b></h2>
+                <h2 align="center" class="text-white">Login <b>SIMPELPRES</b><b></b></h2>
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->

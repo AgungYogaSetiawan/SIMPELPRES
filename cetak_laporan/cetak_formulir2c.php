@@ -9,15 +9,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
 
 
 $kel = $_SESSION['username'];
+$stat = $_SESSION['status'];
 $kelurahan = $_POST['kelurahan'];
 $bulan = $_POST['bulan'];
 $tahun = $_POST['tahun'];
-if($kel == 'admin'){
+if($stat == 'kpm'){
+    $nama_kpm = $_POST['nama_kpm'];
+}
+if($stat !== 'kpm'){
     if(isset($_POST['cetak'])){
-        $query = mysqli_query($konek,"SELECT * FROM tb_formulir2c f INNER JOIN tb_balita b ON f.id_balita = b.id_balita WHERE b.kelurahan='$kelurahan' AND b.bulan='$bulan' AND b.tahun='$tahun'");
+        $query = mysqli_query($konek,"SELECT * FROM tb_formulir2c f INNER JOIN tb_balita b ON f.id_balita = b.id_balita WHERE b.kelurahan='$kelurahan' AND b.bulan='$bulan' AND b.tahun='$tahun' ORDER BY b.kelurahan");
     }
     if(isset($_POST['cetak_semua'])){
-    $query = mysqli_query($konek, "SELECT * FROM tb_formulir2c f INNER JOIN tb_balita b ON f.id_balita = b.id_balita");
+    $query = mysqli_query($konek, "SELECT * FROM tb_formulir2c f INNER JOIN tb_balita b ON f.id_balita = b.id_balita ORDER BY b.kelurahan");
     }
 } else {
     $kelurahan = $_POST['kelurahan'];
@@ -25,10 +29,10 @@ if($kel == 'admin'){
     $tahun = $_POST['tahun'];
     $nama_kpm = $_POST['nama_kpm'];
     if(isset($_POST['cetak'])){
-        $query = mysqli_query($konek, "SELECT * FROM tb_formulir2c f INNER JOIN tb_balita b ON f.id_balita = b.id_balita WHERE b.kelurahan='$kel' AND b.bulan='$bulan' AND b.tahun='$tahun'");
+        $query = mysqli_query($konek, "SELECT * FROM tb_formulir2c f INNER JOIN tb_balita b ON f.id_balita = b.id_balita WHERE b.kelurahan='$kel' AND b.bulan='$bulan' AND b.tahun='$tahun' ORDER BY b.kelurahan");
     }
     if(isset($_POST['cetak_semua'])){
-    $query = mysqli_query($konek, "SELECT * FROM tb_formulir2c f INNER JOIN tb_balita b ON f.id_balita = b.id_balita WHERE b.kelurahan='$kel'");
+    $query = mysqli_query($konek, "SELECT * FROM tb_formulir2c f INNER JOIN tb_balita b ON f.id_balita = b.id_balita WHERE b.kelurahan='$kel' ORDER BY b.kelurahan");
     }
 }
 
@@ -74,6 +78,10 @@ if($kel == 'admin'){
         <thead>
             <tr>
                 <th rowspan=4 class="th1" style="text-align:center; vertical-align: middle;">No</th>
+                <?php if($stat !== 'kpm' && isset($_POST['cetak_semua'])){ ?>
+                <th rowspan=3 style="text-align:center; vertical-align: middle;">Kecamatan</th>
+                <th rowspan=3 style="text-align:center; vertical-align: middle;">Kelurahan</th>
+                <?php } ?>
                 <th rowspan=4 class="th1" style="text-align:center; vertical-align: middle;">No Rumah Tangga</th>
                 <th rowspan=4 class="th1" style="text-align:center; vertical-align: middle;">Nama Anak</th>
                 <th class="th1" rowspan=4 style="text-align:center; vertical-align: middle;">
@@ -88,13 +96,32 @@ if($kel == 'admin'){
             <tr>
                 <th colspan=12 class="th1" style="text-align:center; vertical-align: middle;">Mengikuti Layanan PAUD (Parenting Bagi Orang Tua Anak Usia)</th>
             <tr>
-                <th colspan=12 style="text-align:left; vertical-align: middle;"><?php echo $bulan ?> <?php echo $tahun; ?></th>
+                <th colspan=12 style="text-align:left; vertical-align: middle;">
+                <?php
+                if(isset($_POST['cetak'])){
+                    echo getBulan($bulan);
+                } else if(isset($_POST['cetak_semua'])){
+                    $bulan = date('n');
+                    $nama_bulan = [
+                        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+                    ];
+                    echo $nama_bulan[$bulan - 1];
+                }
+                ?> 
+                <?php 
+                if(isset($_POST['cetak'])){
+                    echo $tahun;
+                } else if(isset($_POST['cetak_semua'])){
+                    echo date('Y');
+                }
+                ?>
+                </th>
             </tr>
                 
             </tr>
             <tr>
                 <th rowspan=3 class="th1" style="text-align:center; vertical-align: middle;">
-                    <span style="writing-mode: vertical-lr; -ms-writing-mode: tb-rl; transform: rotate(180deg);">Usia Anak</span>
+                    <span style="writing-mode: vertical-lr; -ms-writing-mode: tb-rl; transform: rotate(180deg);">Usia Anak (Tahun)</span>
                 </th>
                 <th rowspan=3 class="th1" style="text-align:center; vertical-align: middle;">
                     <span style="writing-mode: vertical-lr; -ms-writing-mode: tb-rl; transform: rotate(180deg);">Januari</span>
@@ -139,6 +166,10 @@ if($kel == 'admin'){
         <tbody>
             <tr>
                 <td align="center" class="td1"></td>
+                <?php if($stat !== 'kpm' && isset($_POST['cetak_semua'])){ ?>
+                <td style="text-align:center;" class="td1"></td>
+                <td style="text-align:center;" class="td1"></td>
+                <?php } ?>
                 <td align="center" class="td1">a</td>
                 <td align="center" class="td1">b</td>
                 <td align="center" class="td1">c</td>
@@ -164,9 +195,16 @@ if($kel == 'admin'){
             ?>
             <tr>
                 <td class="td1"><?php echo $no++ ?></td>
+                <?php if($stat !== 'kpm' && isset($_POST['cetak_semua'])){ ?>
+                <td class="td1"><?php echo $row['kecamatan']; ?></td>
+                <td class="td1"><?php echo $row['kelurahan']; ?></td>
+                <?php } ?>
                 <td class="td1"><?php echo $row['no_rmh_tangga'];?></td>
                 <td class="td1"><?php echo $row['nama_anak'];?></td>
-                <td class="td1" align="center"><?php echo $row['jk'];?></td>
+                <td class="td1" align="center"><?php 
+                $jk = $row['jk'];
+                echo $jk == 'L' ? 'Laki-laki' : 'Perempuan';
+                ?></td>
                 <td class="td1"><?php echo date("d/m/Y", strtotime($row['tgl_lahir'])); ?></td>
                 <td class="td1" align="center"><?php echo $row['usia_anak'];?></td>
                 <td class="td1">
@@ -322,7 +360,7 @@ function tgl_indo($tanggal){
 }
 ?>
 
-<?php if($_SESSION['username'] == 'admin'){?>
+<?php if($_SESSION['status'] !== 'kpm'){?>
 <div class="footer" style="margin-left: 40rem;">
     <?php if(isset($_POST['cetak_semua'])){?>
         <p>Banjarmasin,	<?php echo tgl_indo(date('Y-m-d')) ?></p>

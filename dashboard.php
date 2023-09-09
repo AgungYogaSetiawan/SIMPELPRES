@@ -7,6 +7,7 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
 } 
 
 $sesi = $_SESSION['username'];
+$stat = $_SESSION['status'];
 ?>
 
 
@@ -23,7 +24,7 @@ $sesi = $_SESSION['username'];
     <meta name="author" content="">
     <link rel="icon" type="image/png" href="img/logo_pemko_bjm2.png">
 
-    <title>SIMPELKPM</title>
+    <title>SIMPELPRES</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -59,7 +60,7 @@ $sesi = $_SESSION['username'];
                 <div class="sidebar-brand-icon">
                     <i><img src="img/logo_pemko_bjm2.png" style="width: 42px;"></i>
                 </div>
-                <div class="sidebar-brand-text mx-1">SIMPELKPM</div>
+                <div class="sidebar-brand-text mx-1">SIMPELPRES</div>
             </a>
 
             <!-- Divider -->
@@ -72,10 +73,18 @@ $sesi = $_SESSION['username'];
                     <span>Beranda</span></a>
             </li>
 
+            <?php if($stat == 'administrator'){ ?>
+            <li class="nav-item active">
+                <a class="nav-link" href="data_master/data_akun/data_akun.php">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Manajemen Akun</span></a>
+            </li>
+            <?php } ?>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <?php if($_SESSION['status'] == 'kpm') {?>
+            <?php if($_SESSION['status'] !== 'pegawai') {?>
             <div class="sidebar-heading">
                 Master
             </div>
@@ -90,6 +99,9 @@ $sesi = $_SESSION['username'];
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="data_master/data_kecamatan.php">Data Kecamatan</a>
                         <a class="collapse-item" href="data_master/data_kelurahan.php">Data Kelurahan</a>
+                        <a class="collapse-item" href="data_master/data_hasil/data_hasil.php">Data Hasil</a>
+                        <a class="collapse-item" href="data_master/data_gizi_anak/data_gizi_anak.php">Data Gizi Anak</a>
+                        <a class="collapse-item" href="data_master/data_status_kehamilan/data_status_hamil.php">Data Status Kehamilan</a>
                         <a class="collapse-item" href="data_master/data_bumil/data_bumil.php">Data Ibu Hamil</a>
                         <a class="collapse-item" href="data_master/data_batita/data_batita.php">Data Anak 0-2 Tahun</a>
                         <a class="collapse-item" href="data_master/data_balita/data_balita.php">Data Anak >2-6 Tahun</a>
@@ -101,6 +113,25 @@ $sesi = $_SESSION['username'];
             <div class="sidebar-heading">
                 Proses
             </div>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsekpm"
+                    aria-expanded="true" aria-controls="collapsekpm">
+                    <i class="fas fa-fw fa-file"></i>
+                    <span>Laporan KPM</span>
+                </a>
+                <div id="collapsekpm" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="formulir/formulir2A/formulir2A.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Ibu Hamil">Data Laporan 2.A</a>
+                        <a class="collapse-item" href="formulir/formulir2B/formulir2B.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Anak 0-2 Tahun">Data Laporan 2.B</a>
+                        <a class="collapse-item" href="formulir/formulir2C/formulir2C.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun">Data Laporan 2.C</a>
+                        <a class="collapse-item" href="formulir/formulir3A/formulir3A.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Hasil Pemantauan Tiga Bulanan Bagi Ibu Hamil">Data Laporan 3.A</a>
+                        <a class="collapse-item" href="formulir/formulir3B/formulir3B.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Tiga Bulanan Bagi Anak 0-2 Tahun">Data Laporan 3.B</a>
+                        <a class="collapse-item" href="formulir/formulir4/formulir4.php" data-toggle="tooltip" data-placement="top" title="Data Konvergensi 1000 HPK">Data Laporan 4</a>
+                    </div>
+                </div>
+            </li>
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -110,14 +141,18 @@ $sesi = $_SESSION['username'];
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="formulir/formulir2A/formulir2A.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Ibu Hamil">Data Laporan 2.A</a>
-                        <a class="collapse-item" href="formulir/formulir2B/formulir2B.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Anak 0-2 Tahun">Data Laporan 2.B</a>
-                        <a class="collapse-item" href="formulir/formulir2C/formulir2C.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun">Data Laporan 2.C</a>
-                        <a class="collapse-item" href="formulir/formulir3A/formulir3A.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Hasil Pemantauan Tiga Bulanan Bagi Ibu Hamil">Data Laporan 3.A</a>
-                        <a class="collapse-item" href="formulir/formulir3B/formulir3B.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Tiga Bulanan Bagi Anak 0-2 Tahun">Data Laporan 3.B</a>
+                        <a class="collapse-item" href="formulir/formulir_bcpl/formulir_bcpl.php" data-toggle="tooltip" data-placement="top" title="Data Bantuan Capaian Penerima Layanan">Data Laporan BCPL</a>
+                        <a class="collapse-item" href="formulir/formulir_status_gizi/formulir_status_gizi.php" data-toggle="tooltip" data-placement="top">Data Laporan Status Gizi <br>Anak</a>
+                        <a class="collapse-item" href="formulir/formulir_prediksi/formulir_prediksi.php" data-toggle="tooltip" data-placement="top">Data Laporan Prediksi <br>Stunting</a>
+                        <a class="collapse-item" href="formulir/formulir_rekomen/formulir_rekomen.php" data-toggle="tooltip" data-placement="top">Data Laporan Rekomendasi <br>Intervensi</a>
+                        <a class="collapse-item" href="formulir/formulir_progjer/formulir_progjer.php" data-toggle="tooltip" data-placement="top">Data Laporan Program <br>Kerja Tahunan</a>
+                        <a class="collapse-item" href="formulir/grafik_gizi/grafik_gizi.php" data-toggle="tooltip" data-placement="top">Grafik Status Gizi Anak</a>
+                        <a class="collapse-item" href="formulir/grafik_gizi/grafik_prediksi.php" data-toggle="tooltip" data-placement="top">Grafik Status Hasil <br> Prediksi Stunting</a>
+                        <a class="collapse-item" href="formulir/grafik_gizi/grafik_peringkat.php" data-toggle="tooltip" data-placement="top">Grafik Status Gizi <br> Tertinggi dan Terendah</a>
                     </div>
                 </div>
             </li>
+
 
             <div class="sidebar-heading">
                 Laporan
@@ -135,6 +170,15 @@ $sesi = $_SESSION['username'];
                         <a class="collapse-item" href="cetak_laporan/cetak_laporan2c.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun">Cetak Laporan 2.C</a>
                         <a class="collapse-item" href="cetak_laporan/cetak_laporan3a.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Hasil Pemantauan Tiga Bulanan Bagi Ibu Hamil">Cetak Laporan 3.A</a>
                         <a class="collapse-item" href="cetak_laporan/cetak_laporan3b.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Tiga Bulanan Bagi Anak 0-2 Tahun">Cetak Laporan 3.B</a>
+                        <a class="collapse-item" href="cetak_laporan/cetak_laporan4.php" data-toggle="tooltip" data-placement="top" title="Data Konvergensi 1000 HPK">Cetak Laporan 4</a>
+                        <a class="collapse-item" href="cetak_laporan/cetak_laporan_bcpl.php" data-toggle="tooltip" data-placement="top" title="Data Bantuan Capaian Penerima Layanan">Cetak Laporan BCPL</a>
+                        <a class="collapse-item" href="cetak_laporan/cetak_laporan_stat_gizi.php" data-toggle="tooltip" data-placement="top">Cetak Laporan Status Gizi <br>Anak</a>
+                        <a class="collapse-item" href="cetak_laporan/cetak_laporan_prediksi.php" data-toggle="tooltip" data-placement="top">Cetak Laporan Prediksi <br>Stunting</a>
+                        <a class="collapse-item" href="cetak_laporan/cetak_laporan_rekomendasi.php" data-toggle="tooltip" data-placement="top">Cetak Laporan Rekomendasi <br>Intervensi</a>
+                        <a class="collapse-item" href="cetak_laporan/cetak_laporan_progjer.php" data-toggle="tooltip" data-placement="top">Cetak Laporan Program <br>Kerja Tahunan</a>
+                        <a class="collapse-item" href="cetak_laporan/cetak_laporan_grafik_status.php" data-toggle="tooltip" data-placement="top">Cetak Laporan Grafik Status <br>Gizi Anak</a>
+                        <a class="collapse-item" href="cetak_laporan/cetak_laporan_grafik_prediksi.php" data-toggle="tooltip" data-placement="top">Cetak Laporan Grafik Hasil <br>Prediksi Stunting</a>
+                        <a class="collapse-item" href="cetak_laporan/cetak_laporan_grafik_peringkat.php" data-toggle="tooltip" data-placement="top">Cetak Laporan Grafik<br> Status Gizi Tertinggi<br>dan Terendah</a>
                     </div>
                 </div>
                 
@@ -200,9 +244,121 @@ $sesi = $_SESSION['username'];
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800 fw-bolder">Selamat Datang di Sistem Informasi Pemantauan dan Evaluasi Ibu Hamil dan Anak-anak untuk Pencegahan Stunting di DPPKBPM Kota Banjarmasin</h1>
+                        <h1 class="h3 mb-0 text-gray-800 fw-bolder text-capitalize">SISTEM INFORMASI MONITORING IBU HAMIL DAN PREDIKSI STUNTING PADA ANAK-ANAK DI DPPKBPM KOTA BANJARMASIN</h1>
                     </div>
                     <div class="row ">
+                        <!-- stunting -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Status Gizi Anak Stunting</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php
+                                                include ('setting/koneksi.php');
+                                                if($sesi == 'admin' or $stat == 'administrator'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM tb_baduta a, tb_gizi_anak b WHERE a.id_gizi_anak=b.id_gizi_anak AND b.status_gizi='STUNTING'");
+                                                } else {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM tb_baduta a, tb_gizi_anak b WHERE a.id_gizi_anak=b.id_gizi_anak AND b.status_gizi='STUNTING' AND a.kelurahan='$sesi'");
+                                                }
+                                                $exe = mysqli_fetch_array($query);
+                                                echo $exe[0];
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- wasting -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Status Gizi Anak Kurang</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php
+                                                include ('setting/koneksi.php');
+                                                if($sesi == 'admin' or $stat == 'administrator'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM tb_baduta a, tb_gizi_anak b WHERE a.id_gizi_anak=b.id_gizi_anak AND b.status_gizi='KURANG'");
+                                                } else {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM tb_baduta a, tb_gizi_anak b WHERE a.id_gizi_anak=b.id_gizi_anak AND b.status_gizi='KURANG' AND a.kelurahan='$sesi'");
+                                                }
+                                                $exe = mysqli_fetch_array($query);
+                                                echo $exe[0];
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- buruk -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Status Gizi Anak Buruk</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php
+                                                include ('setting/koneksi.php');
+                                                if($sesi == 'admin' or $stat == 'administrator'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM tb_baduta a, tb_gizi_anak b WHERE a.id_gizi_anak=b.id_gizi_anak AND b.status_gizi='BURUK'");
+                                                } else {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM tb_baduta a, tb_gizi_anak b WHERE a.id_gizi_anak=b.id_gizi_anak AND b.status_gizi='BURUK' AND a.kelurahan='$sesi'");
+                                                }
+                                                $exe = mysqli_fetch_array($query);
+                                                echo $exe[0];
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- normal -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Status Gizi Anak Normal</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php
+                                                include ('setting/koneksi.php');
+                                                if($sesi == 'admin' or $stat == 'administrator'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM tb_baduta a, tb_gizi_anak b WHERE a.id_gizi_anak=b.id_gizi_anak AND b.status_gizi='NORMAL'");
+                                                } else {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM tb_baduta a, tb_gizi_anak b WHERE a.id_gizi_anak=b.id_gizi_anak AND b.status_gizi='NORMAL' AND a.kelurahan='$sesi'");
+                                                }
+                                                $exe = mysqli_fetch_array($query);
+                                                echo $exe[0];
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- FORMULIR 2.A Card -->
                         <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-danger shadow h-100 py-2">
@@ -214,10 +370,94 @@ $sesi = $_SESSION['username'];
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
                                                 include ('setting/koneksi.php');
-                                                if($sesi == 'admin'){
+                                                if($sesi == 'admin' or $stat == 'administrator'){
                                                     $query = mysqli_query($konek, 'select count(*) from tb_bumil');
                                                 } else {
                                                     $query = mysqli_query($konek, "select count(*) from tb_bumil where kelurahan='$sesi'");
+                                                }
+                                                $exe = mysqli_fetch_array($query);
+                                                echo $exe[0];
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Jumlah Data Ibu Hamil Normal</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php
+                                                include ('setting/koneksi.php');
+                                                if($sesi == 'admin' or $stat == 'administrator'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM tb_bumil a INNER JOIN tb_status_kehamilan b ON a.id_status_kehamilan=b.id_status_kehamilan WHERE b.status_kehamilan='NORMAL'");
+                                                } else {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM tb_bumil a INNER JOIN tb_status_kehamilan b ON a.id_status_kehamilan=b.id_status_kehamilan WHERE b.status_kehamilan='NORMAL' AND a.kelurahan='$sesi'");
+                                                }
+                                                $exe = mysqli_fetch_array($query);
+                                                echo $exe[0];
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Jumlah Data Ibu Hamil KEK</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php
+                                                include ('setting/koneksi.php');
+                                                if($sesi == 'admin' or $stat == 'administrator'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM tb_bumil a INNER JOIN tb_status_kehamilan b ON a.id_status_kehamilan=b.id_status_kehamilan WHERE b.status_kehamilan='KEK'");
+                                                } else {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM tb_bumil a INNER JOIN tb_status_kehamilan b ON a.id_status_kehamilan=b.id_status_kehamilan WHERE b.status_kehamilan='KEK' AND a.kelurahan='$sesi'");
+                                                }
+                                                $exe = mysqli_fetch_array($query);
+                                                echo $exe[0];
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Jumlah Data Ibu Hamil Risti</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php
+                                                include ('setting/koneksi.php');
+                                                if($sesi == 'admin' or $stat == 'administrator'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM tb_bumil a INNER JOIN tb_status_kehamilan b ON a.id_status_kehamilan=b.id_status_kehamilan WHERE b.status_kehamilan='RISTI'");
+                                                } else {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM tb_bumil a INNER JOIN tb_status_kehamilan b ON a.id_status_kehamilan=b.id_status_kehamilan WHERE b.status_kehamilan='RISTI' AND a.kelurahan='$sesi'");
                                                 }
                                                 $exe = mysqli_fetch_array($query);
                                                 echo $exe[0];
@@ -243,7 +483,7 @@ $sesi = $_SESSION['username'];
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
                                                 include ('setting/koneksi.php');
-                                                if($sesi == 'admin'){
+                                                if($sesi == 'admin' or $stat == 'administrator'){
                                                     $query = mysqli_query($konek, 'select count(*) from tb_baduta');
                                                 } else {
                                                     $query = mysqli_query($konek, "select count(*) from tb_baduta where kelurahan='$sesi'");
@@ -271,7 +511,7 @@ $sesi = $_SESSION['username'];
                                                 JUMLAH Data Anak >2-6 Tahun</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php
                                                 include ('setting/koneksi.php');
-                                                if($sesi == 'admin'){
+                                                if($sesi == 'admin' or $stat == 'administrator'){
                                                     $query = mysqli_query($konek, 'select count(*) from tb_balita');
                                                 } else {
                                                     $query = mysqli_query($konek, "select count(*) from tb_balita where kelurahan='$sesi'");
@@ -288,9 +528,6 @@ $sesi = $_SESSION['username'];
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Content Row -->
-                    <div class="row ">
                         <!-- FORMULIR 2.A Card -->
                         <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
@@ -302,7 +539,7 @@ $sesi = $_SESSION['username'];
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
                                                 include ('setting/koneksi.php');
-                                                if($sesi == 'admin'){
+                                                if($sesi == 'admin' or $stat == 'administrator'){
                                                     $query = mysqli_query($konek, "SELECT count(*) FROM tb_formulir2a f INNER JOIN tb_bumil b ON f.id_bumil=b.id_bumil");
                                                 } else {
                                                     $query = mysqli_query($konek, "SELECT count(*) FROM tb_formulir2a f INNER JOIN tb_bumil b ON f.id_bumil=b.id_bumil WHERE kelurahan='$sesi'");
@@ -319,7 +556,6 @@ $sesi = $_SESSION['username'];
                                 </div>
                             </div>
                         </div>
-
                         <!-- FORMULIR 2.B Card -->
                         <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-secondary shadow h-100 py-2">
@@ -331,7 +567,7 @@ $sesi = $_SESSION['username'];
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
                                                 include ('setting/koneksi.php');
-                                                if($sesi == 'admin'){
+                                                if($sesi == 'admin' or $stat == 'administrator'){
                                                     $query = mysqli_query($konek, "SELECT count(*) FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta=b.id_baduta");
                                                 } else {
                                                     $query = mysqli_query($konek, "SELECT count(*) FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta=b.id_baduta WHERE kelurahan='$sesi'");
@@ -348,7 +584,6 @@ $sesi = $_SESSION['username'];
                                 </div>
                             </div>
                         </div>
-
                         <!-- FORMULIR 2.C Card -->
                         <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
@@ -359,7 +594,7 @@ $sesi = $_SESSION['username'];
                                                 JUMLAH LAPORAN 2.C Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php
                                                 include ('setting/koneksi.php');
-                                                if($sesi == 'admin'){
+                                                if($sesi == 'admin' or $stat == 'administrator'){
                                                     $query = mysqli_query($konek, "SELECT count(*) FROM tb_formulir2c f INNER JOIN tb_balita b ON f.id_balita=b.id_balita");
                                                 } else {
                                                     $query = mysqli_query($konek, "SELECT count(*) FROM tb_formulir2c f INNER JOIN tb_balita b ON f.id_balita=b.id_balita WHERE kelurahan='$sesi'");
@@ -376,11 +611,6 @@ $sesi = $_SESSION['username'];
                                 </div>
                             </div>
                         </div>
-                    </div>  
-
-                    <!-- Content Row -->
-
-                    <div class="row justify-content-center">
                         <!-- FORMULIR 3.A Card -->
                         <div class="col-xl-4 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
@@ -394,7 +624,7 @@ $sesi = $_SESSION['username'];
                                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
                                                         <?php
                                                         include ('setting/koneksi.php');
-                                                        if($sesi == 'admin'){
+                                                        if($sesi == 'admin' or $stat == 'administrator'){
                                                             $query = mysqli_query($konek, "SELECT count(*) FROM tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA");
                                                         } else {
                                                             $query = mysqli_query($konek, "SELECT count(*) FROM tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA WHERE kelurahan='$sesi'");
@@ -426,7 +656,7 @@ $sesi = $_SESSION['username'];
                                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
                                                         <?php
                                                         include ('setting/koneksi.php');
-                                                        if($sesi == 'admin'){
+                                                        if($sesi == 'admin' or $stat == 'administrator'){
                                                             $query = mysqli_query($konek, "SELECT count(*) FROM tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB");
                                                         } else {
                                                             $query = mysqli_query($konek, "SELECT count(*) FROM tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB WHERE kelurahan='$sesi'");
@@ -446,7 +676,6 @@ $sesi = $_SESSION['username'];
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
             

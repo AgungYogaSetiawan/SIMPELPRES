@@ -15,10 +15,10 @@
         $tahun = $_POST['tahun'];
         $no_register = $_POST['no_register'];
         $nama_ibu =  $_POST['nama_ibu'];
-        $status_kehamilan =  $_POST['status_kehamilan'];
+        $id_status_kehamilan =  $_POST['id_status_kehamilan'];
         $hari_perkiraan_lahir =  $_POST['hari_perkiraan_lahir'];
         $usia_kehamilan =  $_POST['usia_kehamilan'];
-        $sql = "INSERT INTO tb_bumil VALUES (NULL, '$kelurahan', '$kecamatan', '$bulan', '$tahun', '$no_register','$nama_ibu','$status_kehamilan','$hari_perkiraan_lahir','$usia_kehamilan')";
+        $sql = "INSERT INTO tb_bumil VALUES (NULL, '$kelurahan', '$kecamatan', '$bulan', '$tahun', '$no_register','$nama_ibu','$id_status_kehamilan','$hari_perkiraan_lahir','$usia_kehamilan')";
 
         $database = new Database();
         $connection = $database->getConnection();
@@ -29,7 +29,7 @@
         $statement->bindParam(4, $tahun);
         $statement->bindParam(5, $no_register);
         $statement->bindParam(6, $nama_ibu);
-        $statement->bindParam(7, $status_kehamilan);
+        $statement->bindParam(7, $id_status_kehamilan);
         $statement->bindParam(8, $hari_perkiraan_lahir);
         $statement->bindParam(9, $usia_kehamilan);
         $statement->execute();
@@ -82,103 +82,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../dashboard.php">
-                <div class="sidebar-brand-icon">
-                    <i><img src="../../img/logo_pemko_bjm2.png" style="width: 42px;"></i>
-                </div>
-                <div class="sidebar-brand-text mx-1">SIMPELKPM</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="../../dashboard.php">
-                    <i class="fas fa-fw fa-home"></i>
-                    <span>Beranda</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <?php if($_SESSION['status'] == 'kpm') {?>
-            <div class="sidebar-heading">
-                Master
-            </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-fw fa-file"></i>
-                    <span>Data Master</span>
-                </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../data_kecamatan.php">Data Kecamatan</a>
-                        <a class="collapse-item" href="../data_kelurahan.php">Data Kelurahan</a>
-                        <a class="collapse-item" href="data_bumil.php">Data Ibu Hamil</a>
-                        <a class="collapse-item" href="../data_batita/data_batita.php">Data Anak 0-2 Tahun</a>
-                        <a class="collapse-item" href="../data_balita/data_balita.php">Data Anak >2-6 Tahun</a>
-                    </div>
-                </div>
-            </li>
-            <?php }?>
-
-            <div class="sidebar-heading">
-                Proses
-            </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-clipboard"></i>
-                    <span>Berkas Laporan</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../formulir/formulir2A/formulir2A.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Ibu Hamil">Data Laporan 2.A</a>
-                        <a class="collapse-item" href="../../formulir/formulir2B/formulir2B.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Anak 0-2 Tahun">Data Laporan 2.B</a>
-                        <a class="collapse-item" href="../../formulir/formulir2C/formulir2C.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun">Data Laporan 2.C</a>
-                        <a class="collapse-item" href="../../formulir/formulir3A/formulir3A.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Hasil Pemantauan Tiga Bulanan Ibu Hamil">Data Laporan 3.A</a>
-                        <a class="collapse-item" href="../../formulir/formulir3B/formulir3B.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Tiga Bulanan Bagi Anak 0-2 Tahun">Data Laporan 3.B</a>
-                    </div>
-                </div>
-            </li>
-
-            <div class="sidebar-heading">
-                Laporan
-            </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                    <i class="fas fa-fw fa-print"></i>
-                    <span>Cetak Laporan</span>
-                </a>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan2a.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Ibu Hamil">Cetak Laporan 2.A</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan2b.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Anak 0-2 Tahun">Cetak Laporan 2.B</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan2c.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun">Cetak Laporan 2.C</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan3a.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Hasil Pemantauan Tiga Bulanan Bagi Ibu Hamil">Cetak Laporan 3.A</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan3b.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Tiga Bulanan Bagi Anak 0-2 Tahun">Cetak Laporan 3.B</a>
-                    </div>
-                </div>
-                
-            </li>
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+        <?php include '../../template/sidebar.php'; ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -212,7 +116,7 @@
                                                                 <?php
                                                                 include '../../setting/koneksi.php';
                                                                 //query menampilkan nama unit kerja ke dalam combobox
-                                                                if($kel == 'admin'){
+                                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator'){
                                                                     $query = mysqli_query($konek, "SELECT * FROM tb_kelurahan");
                                                                 } else {
                                                                     $query = mysqli_query($konek, "SELECT * FROM tb_kelurahan WHERE kelurahan='$kel'");
@@ -325,24 +229,19 @@
                                                     <div class="form-group row">
                                                         <label for="status_kehamilan" class="col-sm-2 col-form-label">Status Kehamilan</label>
                                                         <div class="col-sm-10 mt-2">
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" value="KEK" name="status_kehamilan" id="status_kehamilan" required>
-                                                                <label class="form-check-label" for="status_kehamilan">
-                                                                    KEK
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" value="RISTI" name="status_kehamilan" id="status_kehamilan2" required>
-                                                                <label class="form-check-label" for="status_kehamilan2">
-                                                                    RISTI
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-check form-check-inline">
-                                                                <input class="form-check-input" type="radio" value="NORMAL" name="status_kehamilan" id="status_kehamilan3" required>
-                                                                <label class="form-check-label" for="status_kehamilan3">
-                                                                    NORMAL
-                                                                </label>
-                                                            </div>
+                                                            <select class="form-select select2" name="id_status_kehamilan" id="id_status_kehamilan" style="width: 250px;">
+                                                                <option >--Pilih Status Kehamilan--</option>
+                                                                <?php
+                                                                include '../../setting/koneksi.php';
+                                                                //query menampilkan nama unit kerja ke dalam combobox
+                                                                $query = mysqli_query($konek, "SELECT * FROM tb_status_kehamilan");
+                                                                while ($data = mysqli_fetch_array($query)) {
+                                                                ?>
+                                                                <option value="<?=$data['id_status_kehamilan'];?>"><?php echo $data['status_kehamilan'];?></option>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <!-- end status kehamilan -->
@@ -364,7 +263,7 @@
                                                     <div class="form-group row">
                                                         <label for="usia_kehamilan" class="col-sm-2 col-form-label">Usia Kehamilan</label>
                                                         <div class="col-sm-10 mt-2">
-                                                            <input type="text" class="form-control" name="usia_kehamilan" id="usia_kehamilan" placeholder="Usia Kehamilan" style="width: 250px;">
+                                                            <input type="text" class="form-control" name="usia_kehamilan" id="usia_kehamilan" placeholder="Usia Kehamilan (Bulan)" style="width: 250px;">
                                                         </div>
                                                     </div>
                                                     <!-- end usia kehamilan -->

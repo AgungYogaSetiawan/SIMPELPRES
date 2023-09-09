@@ -17,10 +17,17 @@
 
         // menyimpan data ke tabel formulir 3a
         $sql = "INSERT INTO tb_formulir3a (id_bumil,id_formulir_duaA,jml_diterima_lengkap,persen) VALUES ('$id_bumil','$id_formulir_duaA','$jml_diterima_lengkap','$persen')";
-        mysqli_query($konek,$sql);
+        // $cek = "SELECT * FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.id_bumil='$id_bumil' AND c.id_formulir_duaA='$id_formulir_duaA' AND b.kelurahan='$kel'";
+        $result = mysqli_query($konek,$sql);
+        // $cek_res = mysqli_query($konek,$cek);
+        if($result){
+            echo "<script>alert('Data Berhasil Ditambahkan');</script>";
+            echo '<meta http-equiv="refresh" content="1;url=formulir3A.php">';
+        } else {
+            echo "<script>alert('Data Gagal Ditambahkan');</script>";
+        }
         
-        echo "<script>alert('Data Berhasil Ditambahkan');</script>";
-        echo '<meta http-equiv="refresh" content="1;url=formulir3A.php">';
+        
     }
 ?>
 
@@ -68,105 +75,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../dashboard.php">
-                <div class="sidebar-brand-icon">
-                    <i><img src="../../img/logo_pemko_bjm2.png" style="width: 42px;"></i>
-                </div>
-                <div class="sidebar-brand-text mx-1">SIMPELKPM</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="../../dashboard.php">
-                    <i class="fas fa-fw fa-home"></i>
-                    <span>Beranda</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <?php if($_SESSION['status'] == 'kpm') {?>
-            <div class="sidebar-heading">
-                Master
-            </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-fw fa-file"></i>
-                    <span>Data Master</span>
-                </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../data_master/data_kecamatan.php">Data Kecamatan</a>
-                        <a class="collapse-item" href="../../data_master/data_kelurahan.php">Data Kelurahan</a>
-                        <a class="collapse-item" href="../../data_master/data_bumil/data_bumil.php">Data Ibu Hamil</a>
-                        <a class="collapse-item" href="../../data_master/data_batita/data_batita.php">Data Anak 0-2 Tahun</a>
-                        <a class="collapse-item" href="../../data_master/data_balita/data_balita.php">Data Anak >2-6 Tahun</a>
-                    </div>
-                </div>
-            </li>
-            <?php } ?>
-
-            <div class="sidebar-heading">
-                Proses
-            </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-clipboard"></i>
-                    <span>Berkas Laporan</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../formulir/formulir2A/formulir2A.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Ibu Hamil">Data Laporan 2.A</a>
-                        <a class="collapse-item" href="../../formulir/formulir2B/formulir2B.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Anak 0-2 Tahun">Data Laporan 2.B</a>
-                        <a class="collapse-item" href="../../formulir/formulir2C/formulir2C.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun">Data Laporan 2.C</a>
-                        <a class="collapse-item" href="formulir3A.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Hasil Pemantauan Tiga Bulanan Ibu Hamil">Data Laporan 3.A</a>
-                        <a class="collapse-item" href="../../formulir/formulir3B/formulir3B.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Tiga Bulanan Bagi Anak 0-2 Tahun">Data Laporan 3.B</a>
-                    </div>
-                </div>
-            </li>
-
-            <div class="sidebar-heading">
-                Laporan
-            </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                    <i class="fas fa-fw fa-print"></i>
-                    <span>Cetak Laporan</span>
-                </a>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan2a.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Ibu Hamil">Cetak Laporan 2.A</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan2b.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Anak 0-2 Tahun">Cetak Laporan 2.B</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan2c.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun">Cetak Laporan 2.C</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan3a.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Hasil Pemantauan Tiga Bulanan Bagi Ibu Hamil">Cetak Laporan 3.A</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan3b.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Tiga Bulanan Bagi Anak 0-2 Tahun">Cetak Laporan 3.B</a>
-                    </div>
-                </div>
-                
-            </li>
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+        <?php include '../../template/sidebar.php'; ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -198,7 +107,7 @@
                                                 <select class="form-select select2" name="id_bumil" id="id_bumil" style="width: 250px;">
                                                 <?php
                                                     include "../../setting/koneksi.php";
-                                                    if($kel == 'admin'){
+                                                    if($stat == 'pegawai' or $_SESSION['status'] == 'administrator'){
                                                         $query = mysqli_query($konek, "SELECT * FROM tb_bumil ORDER BY id_bumil");
                                                     } else {
                                                         $query = mysqli_query($konek, "SELECT * FROM tb_bumil WHERE kelurahan='$kel' ORDER BY id_bumil");
@@ -224,7 +133,7 @@
                                                 <select class="form-select select2" name="id_formulir_duaA" id="id_formulir_duaA" style="width: 250px;">
                                                 <?php
                                                     include "../../setting/koneksi.php";
-                                                    if($kel == 'admin'){
+                                                    if($stat == 'pegawai' or $_SESSION['status'] == 'administrator'){
                                                         $query = mysqli_query($konek, "SELECT * FROM tb_formulir2a f INNER JOIN tb_bumil b ON f.id_bumil=b.id_bumil");
                                                     } else {
                                                         $query = mysqli_query($konek, "SELECT * FROM tb_formulir2a f INNER JOIN tb_bumil b ON f.id_bumil=b.id_bumil WHERE kelurahan='$kel'");

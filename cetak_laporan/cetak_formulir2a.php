@@ -9,15 +9,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
 
 
 $kel = $_SESSION['username'];
+$stat = $_SESSION['status'];
 $kelurahan = $_POST['kelurahan'];
 $bulan = $_POST['bulan'];
 $tahun = $_POST['tahun'];
-if($kel == 'admin'){
+if($stat == 'kpm'){
+    $nama_kpm = $_POST['nama_kpm'];
+}
+if($stat !== 'kpm'){
     if(isset($_POST['cetak'])){
-        $query = mysqli_query($konek, "SELECT * FROM tb_formulir2a f INNER JOIN tb_bumil b ON f.id_bumil = b.id_bumil WHERE b.kelurahan='$kelurahan' AND b.bulan=$bulan AND b.tahun=$tahun");
+        $query = mysqli_query($konek, "SELECT * FROM tb_formulir2a f INNER JOIN tb_bumil b ON f.id_bumil = b.id_bumil INNER JOIN tb_status_kehamilan s ON b.id_status_kehamilan=s.id_status_kehamilan WHERE b.kelurahan='$kelurahan' AND b.bulan=$bulan AND b.tahun=$tahun ORDER BY b.kelurahan");
     }
     if(isset($_POST['cetak_semua'])){
-        $query = mysqli_query($konek, "SELECT * FROM tb_formulir2a f INNER JOIN tb_bumil b ON f.id_bumil=b.id_bumil");
+        $query = mysqli_query($konek, "SELECT * FROM tb_formulir2a f INNER JOIN tb_bumil b ON f.id_bumil=b.id_bumil INNER JOIN tb_status_kehamilan s ON b.id_status_kehamilan=s.id_status_kehamilan ORDER BY b.kelurahan");
     }
 } else {
     $kelurahan = $_POST['kelurahan'];
@@ -25,10 +29,10 @@ if($kel == 'admin'){
     $tahun = $_POST['tahun'];
     $nama_kpm = $_POST['nama_kpm'];
     if(isset($_POST['cetak'])){
-        $query = mysqli_query($konek, "SELECT * FROM tb_formulir2a f INNER JOIN tb_bumil b ON f.id_bumil = b.id_bumil WHERE b.kelurahan='$kel' AND b.bulan=$bulan AND b.tahun=$tahun");
+        $query = mysqli_query($konek, "SELECT * FROM tb_formulir2a f INNER JOIN tb_bumil b ON f.id_bumil = b.id_bumil INNER JOIN tb_status_kehamilan s ON b.id_status_kehamilan=s.id_status_kehamilan WHERE b.kelurahan='$kel' AND b.bulan=$bulan AND b.tahun=$tahun ORDER BY b.kelurahan");
     }
     if(isset($_POST['cetak_semua'])){
-        $query = mysqli_query($konek, "SELECT * FROM tb_formulir2a f INNER JOIN tb_bumil b ON f.id_bumil=b.id_bumil WHERE b.kelurahan='$kel'");
+        $query = mysqli_query($konek, "SELECT * FROM tb_formulir2a f INNER JOIN tb_bumil b ON f.id_bumil=b.id_bumil INNER JOIN tb_status_kehamilan s ON b.id_status_kehamilan=s.id_status_kehamilan WHERE b.kelurahan='$kel' ORDER BY b.kelurahan");
     }
     
 }
@@ -113,12 +117,34 @@ function  getBulan($bln){
         <H3>LAPORAN 2A PEMANTAUAN BULANAN BAGI IBU HAMIL</H3>
         <thead>
             <tr>
-                <th rowspan=3 style="text-align:right; vertical-align: middle;">No</th>
+                <th rowspan=3 style="text-align:center; vertical-align: middle;">No</th>
+                <?php if($stat !== 'kpm' && isset($_POST['cetak_semua'])){ ?>
+                <th rowspan=3 style="text-align:center; vertical-align: middle;">Kecamatan</th>
+                <th rowspan=3 style="text-align:center; vertical-align: middle;">Kelurahan</th>
+                <?php } ?>
                 <th rowspan=3 style="text-align:center; vertical-align: middle;">No Register <br>(KIA)</th>
                 <th rowspan=3 style="text-align:center; vertical-align: middle;">Nama Ibu</th>
                 <th rowspan=3 style="text-align:center; vertical-align: middle;">Status Kehamilan <br>(KEK/RISTI/NORMAL)</th>
                 <th rowspan=3 style="text-align:center; vertical-align: middle;">Hari Perkiraan Lahir <br>(Tgl/Bln/Thn)</th>
-                <th colspan="9" style="text-align:center; vertical-align: middle;"><?php echo getBulan($bulan) ?> <?php echo $tahun ?>
+                <th colspan="9" style="text-align:center; vertical-align: middle;">
+                <?php
+                if(isset($_POST['cetak'])){
+                    echo getBulan($bulan);
+                } else if(isset($_POST['cetak_semua'])){
+                    $bulan = date('n');
+                    $nama_bulan = [
+                        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+                    ];
+                    echo $nama_bulan[$bulan - 1];
+                }
+                ?> 
+                <?php 
+                if(isset($_POST['cetak'])){
+                    echo $tahun;
+                } else if(isset($_POST['cetak_semua'])){
+                    echo date('Y');
+                }
+                ?>
                 </th>
                 
             </tr>
@@ -158,6 +184,10 @@ function  getBulan($bln){
             </tr>
             <tr>
                 <td style="text-align:center;" class="td1"></td>
+                <?php if($stat !== 'kpm' && isset($_POST['cetak_semua'])){ ?>
+                <td style="text-align:center;" class="td1"></td>
+                <td style="text-align:center;" class="td1"></td>
+                <?php } ?>
                 <td style="text-align:center;" class="td1">a</td>
                 <td style="text-align:center;" class="td1">b</td>
                 <td style="text-align:center;" class="td1">c</td>
@@ -182,6 +212,10 @@ function  getBulan($bln){
             ?>
             <tr>
                 <td style="text-align:center;" class="td1"><?php echo $no++ ?></td>
+                <?php if($stat !== 'kpm' && isset($_POST['cetak_semua'])){ ?>
+                <td class="td1"><?php echo $row['kecamatan']; ?></td>
+                <td class="td1"><?php echo $row['kelurahan']; ?></td>
+                <?php } ?>
                 <td style="text-align:center;" class="td1"><?php echo $row['no_register']; ?></td>
                 <td style="text-align:left;" class="td1"><?php echo $row['nama_ibu']; ?></td>
                 <td style="text-align:center;" class="td1"><?php echo $row['status_kehamilan']; ?></td>
@@ -306,7 +340,7 @@ function tgl_indo($tanggal){
 	return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
 }
 ?>
-<?php if($_SESSION['username'] == 'admin'){?>
+<?php if($_SESSION['status'] !== 'kpm'){?>
 <div class="footer" style="margin-left: 40rem;">
     <?php if(isset($_POST['cetak_semua'])){?>
         <p>Banjarmasin,	<?php echo tgl_indo(date('Y-m-d')) ?></p>

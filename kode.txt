@@ -1,0 +1,120 @@
+<?php
+                                                include ('../../setting/koneksi.php');
+                                                if($stat == 'pegawai'){
+                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_kehamilan='Y'");
+                                                    $exe = mysqli_fetch_array($jml_diterima);
+
+                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA)");
+                                                    $exe2 = mysqli_fetch_array($jml_harus);
+                                                } else {
+                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_kehamilan='Y' AND b.kelurahan='$kel'");
+                                                    $exe = mysqli_fetch_array($jml_diterima);
+
+                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel'");
+                                                    $exe2 = mysqli_fetch_array($jml_harus);
+                                                }
+
+                                                set_error_handler(function () {
+                                                    throw new Exception('Ach!');
+                                                });
+
+                                                try {
+                                                    echo round($exe[0] / $exe2[0] * 100,0)."%";
+                                                } catch( Exception $e ){
+                                                    echo "0%".PHP_EOL;
+                                                    $hasil = 0;
+                                                }
+
+                                                restore_error_handler();
+                                                ?>
+
+
+
+
+
+
+
+
+
+<?php
+                                                    include ('../../setting/koneksi.php');
+                                                    if($stat == 'pegawai'){
+                                                        $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_kehamilan='Y'");
+                                                    } else {
+                                                        $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_kehamilan='Y' AND b.kelurahan='$kel'");
+                                                    }
+                                                    $exe = mysqli_fetch_array($jml_diterima);
+                                                    echo $exe[0];
+                                                    ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+                                                include ('../../setting/koneksi.php');
+                                                if($stat == 'pegawai'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.pemberian_imunisasi_dasar='Y'");
+                                                } else {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.pemberian_imunisasi_dasar='Y' AND b.kelurahan='$kel'");
+                                                }
+                                                
+                                                $exe = mysqli_fetch_array($query);
+                                                echo $exe[0];
+                                                ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+                                                include ('../../setting/koneksi.php');
+                                                if($stat == 'pegawai'){
+                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.pemberian_imunisasi_dasar='Y'");
+                                                    $exe = mysqli_fetch_array($jml_diterima);
+
+                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
+                                                    $exe2 = mysqli_fetch_array($jml_harus);
+                                                } else {
+                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.pemberian_imunisasi_dasar='Y' AND b.kelurahan='$kel'");
+                                                    $exe = mysqli_fetch_array($jml_diterima);
+
+                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                    $exe2 = mysqli_fetch_array($jml_harus);
+                                                }
+                                                
+                                                set_error_handler(function () {
+                                                    throw new Exception('Ach!');
+                                                });
+
+                                                try {
+                                                    echo round($exe[0] / $exe2[0] * 100,0)."%";
+                                                } catch( Exception $e ){
+                                                    echo "0%".PHP_EOL;
+                                                    $hasil = 0;
+                                                }
+
+                                                restore_error_handler();
+                                                ?>

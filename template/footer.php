@@ -1,7 +1,7 @@
-        </div>
+        <!-- </div> -->
                 <!-- /.container-fluid -->
 
-            </div>
+            <!-- </div> -->
             <!-- End of Main Content -->
         <a class="up-icon" data-toggle="modal" data-target="#tipsModal">
             <i class="fa fa-question"></i>
@@ -9,7 +9,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; <a href="https://www.linkedin.com/in/agung-yoga-setiawan/" target="_blank">Agung Yoga Setiawan 2023</a></span>
+                        <span>Copyright &copy; <a href="https://www.linkedin.com/in/agung-yoga-setiawan/" target="_blank">Agung Yoga Setiawan</a> 2023</span>
                         
                     </div>
                 </div>
@@ -144,6 +144,8 @@
     <!-- sweet alert js -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+
+    
 
     <!-- datatables js -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -331,6 +333,8 @@
         }
 
     </script>
+
+    
 
 </body>
 

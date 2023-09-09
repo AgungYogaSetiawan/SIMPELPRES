@@ -20,7 +20,7 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
     <meta name="author" content="">
     <link rel="icon" type="image/png" href="../../img/logo_pemko_bjm2.png">
 
-    <title>SIMPELKPM - Data Laporan 3.B</title>
+    <title>SIMPELPRES - Data Laporan 3.B</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -50,103 +50,7 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../dashboard.php">
-                <div class="sidebar-brand-icon">
-                    <i><img src="../../img/logo_pemko_bjm2.png" style="width: 42px;"></i>
-                </div>
-                <div class="sidebar-brand-text mx-1">SIMPELKPM</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="../../dashboard.php">
-                    <i class="fas fa-fw fa-home"></i>
-                    <span>Beranda</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <?php if($_SESSION['status'] == 'kpm') {?>
-            <div class="sidebar-heading">
-                Master
-            </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-fw fa-file"></i>
-                    <span>Data Master</span>
-                </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../data_master/data_kecamatan.php">Data Kecamatan</a>
-                        <a class="collapse-item" href="../../data_master/data_kelurahan.php">Data Kelurahan</a>
-                        <a class="collapse-item" href="../../data_master/data_bumil/data_bumil.php">Data Ibu Hamil</a>
-                        <a class="collapse-item" href="../../data_master/data_batita/data_batita.php">Data Anak 0-2 Tahun</a>
-                        <a class="collapse-item" href="../../data_master/data_balita/data_balita.php">Data Anak >2-6 Tahun</a>
-                    </div>
-                </div>
-            </li>
-            <?php } ?>
-
-            <div class="sidebar-heading">
-                Proses
-            </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-clipboard"></i>
-                    <span>Berkas Laporan</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../formulir/formulir2A/formulir2A.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Ibu Hamil">Data Laporan 2.A</a>
-                        <a class="collapse-item" href="../../formulir/formulir2B/formulir2B.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Anak 0-2 Tahun">Data Laporan 2.B</a>
-                        <a class="collapse-item" href="../../formulir/formulir2C/formulir2C.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun">Data Laporan 2.C</a>
-                        <a class="collapse-item" href="../../formulir/formulir3A/formulir3A.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Hasil Pemantauan Tiga Bulanan Ibu Hamil">Data Laporan 3.A</a>
-                        <a class="collapse-item" href="" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Tiga Bulanan Bagi Anak 0-2 Tahun">Data Laporan 3.B</a>
-                    </div>
-                </div>
-            </li>
-
-            <div class="sidebar-heading">
-                Laporan
-            </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                    <i class="fas fa-fw fa-print"></i>
-                    <span>Cetak Laporan</span>
-                </a>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan2a.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Ibu Hamil">Cetak Laporan 2.A</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan2b.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Anak 0-2 Tahun">Cetak Laporan 2.B</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan2c.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun">Cetak Laporan 2.C</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan3a.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Hasil Pemantauan Tiga Bulanan Bagi Ibu Hamil">Cetak Laporan 3.A</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan3b.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Tiga Bulanan Bagi Anak 0-2 Tahun">Cetak Laporan 3.B</a>
-                    </div>
-                </div>
-                
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+        <?php include '../../template/sidebar.php'; ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -175,7 +79,7 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                                     $kel = $_SESSION['username'];
                                                     $stat = $_SESSION['status'];
                                                     //query menampilkan nama unit kerja ke dalam combobox
-                                                    if($stat == 'pegawai'){
+                                                    if($stat == 'pegawai' or $_SESSION['status'] == 'administrator'){
                                                         $query = mysqli_query($konek, "SELECT * FROM tb_kelurahan GROUP BY kelurahan ORDER BY kelurahan");
                                                     } else{
                                                         $query = mysqli_query($konek, "SELECT * FROM tb_kelurahan WHERE kelurahan='$kel'");
@@ -226,16 +130,17 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-sm mt-2" name="cari"><i class="fa fa fa-search"></i> Tampilkan</button>
-                                        <a href="formulir3B.php">Refresh</a>
+                                        <a href="formulir3B.php" class="btn btn-secondary btn-sm mt-2"><i class="fa fa fa-sync"></i> Refresh</a>
                                     </form>
                                     <!-- end form pencarian -->
                                 </div>
                             </div>
 
                             <!-- table -->
-                            <?php if($_SESSION['status'] == 'kpm') {?>
+                            <?php if($_SESSION['status'] !== 'pegawai') {?>
                             <a href="tambah_data.php" class="btn btn-success btn-sm"><i class="fa fa fa-plus"></i> Tambah Data</a>
                             <?php } ?>
+                            <a href="../../cetak_laporan/cetak_laporan3b.php" class="btn btn-warning btn-sm"><i class="fa fa fa-print"></i> Cetak</a>
                             <div class="card mb-4 mt-2">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold">Data Laporan 3B Rekapitulasi Hasil Pemantauan 3 (Tiga) Bulanan Bagi Anak 0-2 Tahun</h6>
@@ -258,7 +163,7 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <th rowspan=3 style="text-align:center; vertical-align: middle;">Bulan</th>
                                             <th colspan="12" style="text-align:center; vertical-align: middle;">KUARTAL KE 1 BULAN</th>
                                             <th colspan=3 rowspan=2 style="text-align:center; vertical-align: middle;">Tingkat Konvergensi Indikator</th>
-                                            <?php if($_SESSION['status'] == 'kpm') {?>
+                                            <?php if($_SESSION['status'] !== 'pegawai') {?>
                                             <th rowspan=3 style="text-align:center; vertical-align: middle;">Aksi</th>
                                             <?php } ?>
                                         </tr>
@@ -332,7 +237,7 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">q</td>
                                             <td class="td1">r</td>
                                             <td class="td1">s</td>
-                                            <?php if($_SESSION['status'] == 'kpm') {?>
+                                            <?php if($_SESSION['status'] !== 'pegawai') {?>
                                             <td class="td1"></td>
                                             <?php } ?>
                                         </tr>
@@ -360,18 +265,18 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             } else {
                                                 $kuartal = "Ibu Bersalin";
                                             }
-                                            $query = mysqli_query($konek, "SELECT * FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2 LIMIT $halaman_awal, $batas");
-                                            $query_halaman = mysqli_query($konek, "SELECT * FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
+                                            $query = mysqli_query($konek, "SELECT * FROM (((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN '$bulan' AND '$bulan2' ORDER BY b.kelurahan LIMIT $halaman_awal, $batas");
+                                            $query_halaman = mysqli_query($konek, "SELECT * FROM (((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN '$bulan' AND '$bulan2' ORDER BY b.kelurahan");
                                             $jumlah_data = mysqli_num_rows($query_halaman);
 				                            $total_halaman = ceil($jumlah_data / $batas);
-                                        } else if($stat == 'pegawai'){
-                                            $query = mysqli_query($konek, "SELECT * FROM tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB LIMIT $halaman_awal, $batas");
-                                            $query_halaman = mysqli_query($konek, "SELECT * FROM tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB");
+                                        } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator'){
+                                            $query = mysqli_query($konek, "SELECT * FROM tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak ORDER BY b.kelurahan LIMIT $halaman_awal, $batas");
+                                            $query_halaman = mysqli_query($konek, "SELECT * FROM tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak ORDER BY b.kelurahan");
                                             $jumlah_data = mysqli_num_rows($query_halaman);
 				                            $total_halaman = ceil($jumlah_data / $batas);
                                         } else if($stat == 'kpm'){
-                                            $query = mysqli_query($konek, "SELECT * FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' ORDER BY b.kelurahan DESC LIMIT $halaman_awal, $batas");
-                                            $query_halaman = mysqli_query($konek, "SELECT * FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' ORDER BY b.kelurahan DESC");
+                                            $query = mysqli_query($konek, "SELECT * FROM (((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak) WHERE b.kelurahan='$kel' ORDER BY b.kelurahan LIMIT $halaman_awal, $batas");
+                                            $query_halaman = mysqli_query($konek, "SELECT * FROM (((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak) WHERE b.kelurahan='$kel' ORDER BY b.kelurahan");
                                             $jumlah_data = mysqli_num_rows($query_halaman);
 				                            $total_halaman = ceil($jumlah_data / $batas);
                                         }
@@ -426,10 +331,13 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td><?php echo $row['kecamatan']  ?></td>
                                             <td class="td1"><?php echo $row['no_register']  ?></td>
                                             <td><?php echo $row['nama_anak']  ?></td>
-                                            <td class="td1"><?php echo $row['jk']  ?></td>
+                                            <td class="td1"><?php 
+                                            $jk = $row['jk'];
+                                            echo $jk == 'L' ? 'Laki-laki' : 'Perempuan';
+                                            ?></td>
                                             <td class="td1"><?php echo getBulan($row['bulan']); ?></td>
                                             <td class="td1"><?php echo $row['umur']  ?></td>
-                                            <td class="td1"><?php echo $row['status_gizi_anak']  ?></td>
+                                            <td class="td1"><?php echo $row['status_gizi']  ?></td>
                                             <td class="td1"><?php echo $row['pemberian_imunisasi_dasar']  ?></td>
                                             <td class="td1"><?php echo $row['berat_badan']  ?></td>
                                             <td class="td1"><?php echo $row['tinggi_badan']  ?></td>
@@ -447,7 +355,7 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             echo $row['persen']. "%";
                                             ?></td>
                                             <?php
-                                            if($_SESSION['status'] == 'kpm'){
+                                            if($_SESSION['status'] !== 'pegawai'){
                                             echo "<td>
                                             <div class='btn-row'
                                             <div class='btn-group'>
@@ -472,9 +380,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.pemberian_imunisasi_dasar='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.pemberian_imunisasi_dasar='Y'");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.pemberian_imunisasi_dasar='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.pemberian_imunisasi_dasar='Y' AND b.kelurahan='$kel'");
                                                 }
                                                 
@@ -485,9 +403,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.berat_badan='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.berat_badan='Y'");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.berat_badan='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.berat_badan='Y' AND b.kelurahan='$kel'");
                                                 }
                                                 
@@ -498,9 +426,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.tinggi_badan='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.tinggi_badan='Y'");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.tinggi_badan='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.tinggi_badan='Y' AND b.kelurahan='$kel'");
                                                 }
                                                 
@@ -511,9 +449,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.k1L='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.k1L='Y'");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.k1L='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.k1L='Y' AND b.kelurahan='$kel'");
                                                 }
                                                 
@@ -524,9 +472,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.kunjungan_rumah='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.kunjungan_rumah='Y'");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.kunjungan_rumah='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.kunjungan_rumah='Y' AND b.kelurahan='$kel'");
                                                 }
                                                 
@@ -537,9 +495,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.kepem_air_bersih='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.kepem_air_bersih='Y'");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.kepem_air_bersih='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.kepem_air_bersih='Y' AND b.kelurahan='$kel'");
                                                 }
                                                 
@@ -550,9 +518,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.kepem_jamban='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.kepem_jamban='Y'");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.kepem_jamban='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.kepem_jamban='Y' AND b.kelurahan='$kel'");
                                                 }
                                                 
@@ -563,9 +541,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.akta_lahir='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.akta_lahir='Y'");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.akta_lahir='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.akta_lahir='Y' AND b.kelurahan='$kel'");
                                                 }
                                                 
@@ -577,9 +565,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.jamkes='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.jamkes='Y'");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.jamkes='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.jamkes='Y' AND b.kelurahan='$kel'");
                                                 }
                                                 
@@ -590,9 +588,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.pengasuhan_paud='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.pengasuhan_paud='Y'");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.pengasuhan_paud='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.pengasuhan_paud='Y' AND b.kelurahan='$kel'");
                                                 }
                                                 
@@ -603,9 +611,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td rowspan=4 style="text-align:center; vertical-align: middle;">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
-                                                    $query = mysqli_query($konek, "SELECT COUNT(	jml_diterima_lengkap) FROM tb_formulir3b WHERE jml_diterima_lengkap=10");
-                                                } else {
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(a.jml_diterima_lengkap) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND a.jml_diterima_lengkap=10 AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(a.jml_diterima_lengkap) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE a.jml_diterima_lengkap=10");
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(a.jml_diterima_lengkap) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND a.jml_diterima_lengkap=10 AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(a.jml_diterima_lengkap) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE a.jml_diterima_lengkap=10 AND b.kelurahan='$kel'");
                                                 }
                                                 
@@ -616,32 +634,64 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td rowspan=4 style="text-align:center; vertical-align: middle;">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
-                                                    $query = mysqli_query($konek, 'select count(*) from tb_formulir3b');
-                                                } else {
-                                                    $query = mysqli_query($konek ,"SELECT COUNT(*) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'kpm'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(*) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
                                                 }
                                                 
-                                                $exe_jml = mysqli_fetch_array($query);
-                                                echo $exe_jml[0];
+                                                $exe = mysqli_fetch_array($query);
+                                                echo $exe[0];
                                                 ?>
                                             </td>
                                             <td rowspan=4 style="text-align:center; vertical-align: middle;">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
-                                                    $query = mysqli_query($konek, "SELECT COUNT(persen) FROM tb_formulir3b WHERE persen=100");
-                                                } else {
-                                                    $query = mysqli_query($konek, "SELECT COUNT(a.persen) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE a.persen=100 AND b.kelurahan='$kel'");
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(a.persen) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND a.persen=100 AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(a.persen) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(a.persen) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE a.persen=100");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(a.persen) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(a.persen) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND a.persen=100 AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(a.persen) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(a.persen) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND a.persen=100");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(a.persen) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                    $exe_jml = mysqli_fetch_array($query);
                                                 }
                                                 
-                                                $exe = mysqli_fetch_array($query);
+                                                // $exe = mysqli_fetch_array($query);
                                                 set_error_handler(function () {
                                                     throw new Exception('Ach!');
                                                 });
 
                                                 try {
-                                                    echo round(100 / ($exe_jml[0] / $exe[0]))."%";
+                                                    echo round(100 / $exe_jml[0] * $exe[0])."%";
                                                 } catch( Exception $e ){
                                                     echo "0%".PHP_EOL;
                                                     $hasil = 0;
@@ -657,11 +707,22 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
                                                 }
+                                                
                                                 $exe = mysqli_fetch_array($query);
                                                 echo $exe[0];
                                                 ?>
@@ -669,11 +730,22 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
                                                 }
+                                                
                                                 $exe = mysqli_fetch_array($query);
                                                 echo $exe[0];
                                                 ?>
@@ -681,9 +753,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
                                                 }
                                                 
@@ -694,9 +776,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
                                                 }
                                                 
@@ -707,9 +799,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
                                                 }
                                                 
@@ -720,9 +822,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
                                                 }
                                                 
@@ -733,9 +845,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
                                                 }
                                                 
@@ -746,9 +868,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
                                                 }
                                                 
@@ -759,9 +891,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
                                                 }
                                                 
@@ -772,9 +914,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                } else {
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                } else if($stat == 'kpm'){
                                                     $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
                                                 }
                                                 
@@ -789,26 +941,41 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.pemberian_imunisasi_dasar='Y'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
-                                                } else {
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.pemberian_imunisasi_dasar='Y' AND b.kelurahan='$kel'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.pemberian_imunisasi_dasar='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.pemberian_imunisasi_dasar='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.pemberian_imunisasi_dasar='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.pemberian_imunisasi_dasar='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pemberian_imunisasi_dasar) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                    $exe_jml = mysqli_fetch_array($query);
                                                 }
                                                 
+                                                // $exe = mysqli_fetch_array($query);
                                                 set_error_handler(function () {
                                                     throw new Exception('Ach!');
                                                 });
 
                                                 try {
-                                                    echo round($exe[0] / $exe2[0] * 100,0)."%";
+                                                    echo round(100 / ($exe_jml[0] / $exe[0]))."%";
                                                 } catch( Exception $e ){
                                                     echo "0%".PHP_EOL;
                                                     $hasil = 0;
@@ -820,26 +987,41 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.berat_badan='Y'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
-                                                } else {
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.berat_badan='Y' AND b.kelurahan='$kel'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.berat_badan='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.berat_badan='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.berat_badan='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.berat_badan='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.berat_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                    $exe_jml = mysqli_fetch_array($query);
                                                 }
                                                 
+                                                // $exe = mysqli_fetch_array($query);
                                                 set_error_handler(function () {
                                                     throw new Exception('Ach!');
                                                 });
 
                                                 try {
-                                                    echo round($exe[0] / $exe2[0] * 100,0)."%";
+                                                    echo round(100 / ($exe_jml[0] / $exe[0]))."%";
                                                 } catch( Exception $e ){
                                                     echo "0%".PHP_EOL;
                                                     $hasil = 0;
@@ -851,26 +1033,41 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.tinggi_badan='Y'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
-                                                } else {
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.tinggi_badan='Y' AND b.kelurahan='$kel'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
-                                                $exe2 = mysqli_fetch_array($jml_harus);
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.tinggi_badan='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.tinggi_badan='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.tinggi_badan='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.tinggi_badan='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.tinggi_badan) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                    $exe_jml = mysqli_fetch_array($query);
                                                 }
                                                 
+                                                // $exe = mysqli_fetch_array($query);
                                                 set_error_handler(function () {
                                                     throw new Exception('Ach!');
                                                 });
 
                                                 try {
-                                                    echo round($exe[0] / $exe2[0] * 100,0)."%";
+                                                    echo round(100 / ($exe_jml[0] / $exe[0]))."%";
                                                 } catch( Exception $e ){
                                                     echo "0%".PHP_EOL;
                                                     $hasil = 0;
@@ -882,26 +1079,41 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.k1L='Y'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
-                                                } else {
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.k1L='Y' AND b.kelurahan='$kel'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.k1L='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.k1L='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.k1L='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.k1L='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.k1L) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                    $exe_jml = mysqli_fetch_array($query);
                                                 }
                                                 
+                                                // $exe = mysqli_fetch_array($query);
                                                 set_error_handler(function () {
                                                     throw new Exception('Ach!');
                                                 });
 
                                                 try {
-                                                    echo round($exe[0] / $exe2[0] * 100,0)."%";
+                                                    echo round(100 / ($exe_jml[0] / $exe[0]))."%";
                                                 } catch( Exception $e ){
                                                     echo "0%".PHP_EOL;
                                                     $hasil = 0;
@@ -913,26 +1125,41 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.kunjungan_rumah='Y'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
-                                                } else {
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.kunjungan_rumah='Y' AND b.kelurahan='$kel'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.kunjungan_rumah='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.kunjungan_rumah='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.kunjungan_rumah='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.kunjungan_rumah='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                    $exe_jml = mysqli_fetch_array($query);
                                                 }
                                                 
+                                                // $exe = mysqli_fetch_array($query);
                                                 set_error_handler(function () {
                                                     throw new Exception('Ach!');
                                                 });
 
                                                 try {
-                                                    echo round($exe[0] / $exe2[0] * 100,0)."%";
+                                                    echo round(100 / ($exe_jml[0] / $exe[0]))."%";
                                                 } catch( Exception $e ){
                                                     echo "0%".PHP_EOL;
                                                     $hasil = 0;
@@ -944,26 +1171,41 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.kepem_air_bersih='Y'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
-                                                } else {
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.kepem_air_bersih='Y' AND b.kelurahan='$kel'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.kepem_air_bersih='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.kepem_air_bersih='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.kepem_air_bersih='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.kepem_air_bersih='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                    $exe_jml = mysqli_fetch_array($query);
                                                 }
                                                 
+                                                // $exe = mysqli_fetch_array($query);
                                                 set_error_handler(function () {
                                                     throw new Exception('Ach!');
                                                 });
 
                                                 try {
-                                                    echo round($exe[0] / $exe2[0] * 100,0)."%";
+                                                    echo round(100 / ($exe_jml[0] / $exe[0]))."%";
                                                 } catch( Exception $e ){
                                                     echo "0%".PHP_EOL;
                                                     $hasil = 0;
@@ -975,26 +1217,41 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.kepem_jamban='Y'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
-                                                } else {
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.kepem_jamban='Y' AND b.kelurahan='$kel'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.kepem_jamban='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.kepem_jamban='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.kepem_jamban='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.kepem_jamban='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                    $exe_jml = mysqli_fetch_array($query);
                                                 }
                                                 
+                                                // $exe = mysqli_fetch_array($query);
                                                 set_error_handler(function () {
                                                     throw new Exception('Ach!');
                                                 });
 
                                                 try {
-                                                    echo round($exe[0] / $exe2[0] * 100,0)."%";
+                                                    echo round(100 / ($exe_jml[0] / $exe[0]))."%";
                                                 } catch( Exception $e ){
                                                     echo "0%".PHP_EOL;
                                                     $hasil = 0;
@@ -1006,26 +1263,41 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.akta_lahir='Y'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
-                                                } else {
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.akta_lahir='Y' AND b.kelurahan='$kel'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.akta_lahir='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.akta_lahir='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.akta_lahir='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.akta_lahir='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.akta_lahir) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                    $exe_jml = mysqli_fetch_array($query);
                                                 }
                                                 
+                                                // $exe = mysqli_fetch_array($query);
                                                 set_error_handler(function () {
                                                     throw new Exception('Ach!');
                                                 });
 
                                                 try {
-                                                    echo round($exe[0] / $exe2[0] * 100,0)."%";
+                                                    echo round(100 / ($exe_jml[0] / $exe[0]))."%";
                                                 } catch( Exception $e ){
                                                     echo "0%".PHP_EOL;
                                                     $hasil = 0;
@@ -1037,26 +1309,41 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.jamkes='Y'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
-                                                } else {
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.jamkes='Y' AND b.kelurahan='$kel'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.jamkes='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.jamkes='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.jamkes='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.jamkes='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                    $exe_jml = mysqli_fetch_array($query);
                                                 }
                                                 
+                                                // $exe = mysqli_fetch_array($query);
                                                 set_error_handler(function () {
                                                     throw new Exception('Ach!');
                                                 });
 
                                                 try {
-                                                    echo round($exe[0] / $exe2[0] * 100,0)."%";
+                                                    echo round(100 / ($exe_jml[0] / $exe[0]))."%";
                                                 } catch( Exception $e ){
                                                     echo "0%".PHP_EOL;
                                                     $hasil = 0;
@@ -1068,26 +1355,41 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1">
                                                 <?php
                                                 include ('../../setting/koneksi.php');
-                                                if($stat == 'pegawai'){
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.pengasuhan_paud='Y'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
-                                                } else {
-                                                    $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.pengasuhan_paud='Y' AND b.kelurahan='$kel'");
-                                                    $exe = mysqli_fetch_array($jml_diterima);
-
-                                                    $jml_harus = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
-                                                    $exe2 = mysqli_fetch_array($jml_harus);
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator' && isset($_POST['cari'])){
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND c.pengasuhan_paud='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE c.pengasuhan_paud='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB)");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm' && isset($_POST['cari'])) {
+                                                    $bln = trim($_POST['bln']);
+                                                    $bln2 = trim($_POST['bln2']);
+                                                    $kelurahan = trim($_POST['kelurahan']);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.pengasuhan_paud='Y' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bln AND $bln2");
+                                                    $exe_jml = mysqli_fetch_array($query);
+                                                } else if($stat == 'kpm'){
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel' AND c.pengasuhan_paud='Y'");
+                                                    $exe = mysqli_fetch_array($query);
+                                                    $query = mysqli_query($konek, "SELECT COUNT(c.pengasuhan_paud) FROM ((tb_formulir3b a INNER JOIN tb_baduta b ON a.id_baduta=b.id_baduta) INNER JOIN tb_formulir2b c ON a.id_formulir_duaB=c.id_formulir_duaB) WHERE b.kelurahan='$kel'");
+                                                    $exe_jml = mysqli_fetch_array($query);
                                                 }
                                                 
+                                                // $exe = mysqli_fetch_array($query);
                                                 set_error_handler(function () {
                                                     throw new Exception('Ach!');
                                                 });
 
                                                 try {
-                                                    echo round($exe[0] / $exe2[0] * 100,0)."%";
+                                                    echo round(100 / ($exe_jml[0] / $exe[0]))."%";
                                                 } catch( Exception $e ){
                                                     echo "0%".PHP_EOL;
                                                     $hasil = 0;

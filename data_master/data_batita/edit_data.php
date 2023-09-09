@@ -26,10 +26,10 @@
         $nama_anak =  $_POST['nama_anak'];
         $jk =  $_POST['jk'];
         $tgl_lahir_anak =  $_POST['tgl_lahir_anak'];
-        $status_gizi_anak =  $_POST['status_gizi_anak'];
+        $id_gizi_anak =  $_POST['id_gizi_anak'];
         $umur =  $_POST['umur'];
-        $hasil = $_POST['hasil'];
-        $sql = "UPDATE `tb_baduta` SET `kelurahan` = ?, `kecamatan` = ?, `bulan` = ?, `tahun` = ?, `no_register` = ?, `nama_anak` = ?, `jk` = ?, `tgl_lahir_anak` = ?, `status_gizi_anak` = ?, `umur` = ?, `hasil` = ? WHERE `tb_baduta`.`id_baduta` = ?";
+        $id_hasil = $_POST['id_hasil'];
+        $sql = "UPDATE `tb_baduta` SET `kelurahan` = ?, `kecamatan` = ?, `bulan` = ?, `tahun` = ?, `no_register` = ?, `nama_anak` = ?, `jk` = ?, `tgl_lahir_anak` = ?, `id_gizi_anak` = ?, `umur` = ?, `id_hasil` = ? WHERE `tb_baduta`.`id_baduta` = ?";
 
         $database = new Database();
         $connection = $database->getConnection();
@@ -42,9 +42,9 @@
         $statement->bindParam(6, $nama_anak);
         $statement->bindParam(7, $jk);
         $statement->bindParam(8, $tgl_lahir_anak);
-        $statement->bindParam(9, $status_gizi_anak);
+        $statement->bindParam(9, $id_gizi_anak);
         $statement->bindParam(10, $umur);
-        $statement->bindParam(11, $hasil);
+        $statement->bindParam(11, $id_hasil);
         $statement->bindParam(12, $id_baduta);
         $statement->execute();
         echo "<script>alert('Data Berhasil Diubah');</script>";
@@ -96,104 +96,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../dashboard.php">
-                <div class="sidebar-brand-icon">
-                    <i><img src="../../img/logo_pemko_bjm2.png" style="width: 42px;"></i>
-                </div>
-                <div class="sidebar-brand-text mx-1">SIMPELKPM</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="../../dashboard.php">
-                    <i class="fas fa-fw fa-home"></i>
-                    <span>Beranda</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <?php if($_SESSION['status'] == 'kpm') {?>
-            <div class="sidebar-heading">
-                Master
-            </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-fw fa-file"></i>
-                    <span>Data Master</span>
-                </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../data_kecamatan.php">Data Kecamatan</a>
-                        <a class="collapse-item" href="../data_kelurahan.php">Data Kelurahan</a>
-                        <a class="collapse-item" href="../data_bumil/data_bumil.php">Data Ibu Hamil</a>
-                        <a class="collapse-item" href="data_batita.php">Data Anak 0-2 Tahun</a>
-                        <a class="collapse-item" href="../data_balita/data_balita.php">Data Anak >2-6 Tahun</a>
-                    </div>
-                </div>
-            </li>
-            <?php } ?>
-
-            <div class="sidebar-heading">
-                Proses
-            </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-clipboard"></i>
-                    <span>Berkas Laporan</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../formulir/formulir2A/formulir2A.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Ibu Hamil">Data Laporan 2.A</a>
-                        <a class="collapse-item" href="../../formulir/formulir2B/formulir2B.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Anak 0-2 Tahun">Data Laporan 2.B</a>
-                        <a class="collapse-item" href="../../formulir/formulir2C/formulir2C.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun">Data Laporan 2.C</a>
-                        <a class="collapse-item" href="../../formulir/formulir3A/formulir3A.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Hasil Pemantauan Tiga Bulanan Ibu Hamil">Data Laporan 3.A</a>
-                        <a class="collapse-item" href="../../formulir/formulir3B/formulir3B.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Tiga Bulanan Bagi Anak 0-2 Tahun">Data Laporan 3.B</a>
-
-                    </div>
-                </div>
-            </li>
-
-            <div class="sidebar-heading">
-                Laporan
-            </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                    <i class="fas fa-fw fa-print"></i>
-                    <span>Cetak Laporan</span>
-                </a>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan2a.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Ibu Hamil">Cetak Laporan 2.A</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan2b.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Anak 0-2 Tahun">Cetak Laporan 2.B</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan2c.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun">Cetak Laporan 2.C</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan3a.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Hasil Pemantauan Tiga Bulanan Bagi Ibu Hamil">Cetak Laporan 3.A</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan3b.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Tiga Bulanan Bagi Anak 0-2 Tahun">Cetak Laporan 3.B</a>
-                    </div>
-                </div>
-                
-            </li>
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+        <?php include '../../template/sidebar.php'; ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -228,7 +131,11 @@
                                                             include '../../setting/koneksi.php';
                                                             $kel = $_SESSION['username'];
                                                             //query menampilkan nama unit kerja ke dalam combobox
-                                                            $query = mysqli_query($konek, "SELECT * FROM tb_kelurahan WHERE kelurahan='$kel'");
+                                                            if($stat == 'pegawai' or $_SESSION['status'] == 'administrator'){
+                                                                $query = mysqli_query($konek, "SELECT * FROM tb_kelurahan");
+                                                            } else {
+                                                                $query = mysqli_query($konek, "SELECT * FROM tb_kelurahan WHERE kelurahan='$kel'");
+                                                            }
                                                             while ($res = mysqli_fetch_array($query)) {
                                                                 if($data['kelurahan']==$res['kelurahan']) {
                                                                     $select = "selected";
@@ -379,30 +286,14 @@
                                                 <div class="form-group row">
                                                     <label for="status_gizi_anak" class="col-sm-2 col-form-label">Status Gizi Anak</label>
                                                     <div class="col-sm-10 mt-2">
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" value="N" name="status_gizi_anak" id="status_gizi_anak" <?php echo ($data['status_gizi_anak'] == 'N') ? " checked" : "" ?> required>
-                                                            <label class="form-check-label" for="status_gizi_anak">
-                                                                NORMAL
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" value="BURUK" name="status_gizi_anak" id="status_gizi_anak2" <?php echo ($data['status_gizi_anak'] == 'BURUK') ? " checked" : "" ?> required>
-                                                            <label class="form-check-label" for="status_gizi_anak2">
-                                                                BURUK
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" value="KURANG" name="status_gizi_anak" id="status_gizi_anak3" <?php echo ($data['status_gizi_anak'] == 'KURANG') ? " checked" : "" ?> required>
-                                                            <label class="form-check-label" for="status_gizi_anak3">
-                                                                KURANG
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" value="STUNTING" name="status_gizi_anak" id="status_gizi_anak4" <?php echo ($data['status_gizi_anak'] == 'STUNTING') ? " checked" : "" ?> required>
-                                                            <label class="form-check-label" for="status_gizi_anak4">
-                                                                STUNTING
-                                                            </label>
-                                                        </div>
+                                                        <select class="form-select select2" name="id_gizi_anak" id="id_gizi_anak" style="width: 250px;">
+                                                        <?php 
+                                                        include '../../setting/koneksi.php';
+                                                        $result = mysqli_query($konek, "SELECT * FROM tb_gizi_anak");
+                                                        while($row = mysqli_fetch_array($result)){?> 
+                                                        <option value="<?php echo $row['id_gizi_anak']?>" <?php if($data["id_gizi_anak"] == $row['id_gizi_anak']){echo "SELECTED";} ?>><?php echo $row['status_gizi']?></option>
+                                                        <?php } ?>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <!-- end jamkes -->
@@ -410,7 +301,7 @@
                                             <div class="col">
                                                 <!-- umur -->
                                                 <div class="form-group row">
-                                                    <label for="umur" class="col-sm-2 col-form-label">Umur</label>
+                                                    <label for="umur" class="col-sm-2 col-form-label">Umur (Bulan)</label>
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control" name="umur" id="umur" placeholder="Umur" style="width: 250px;" value="<?php echo $data['umur']; ?>">
                                                     </div>
@@ -424,24 +315,26 @@
                                                 <div class="form-group row">
                                                     <label for="hasil" class="col-sm-2 col-form-label">Hasil (M/K/H)</label>
                                                     <div class="col-sm-10">
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" value="M" name="hasil" id="hasil" <?php echo ($data['hasil'] == 'M') ? " checked" : "" ?> required>
-                                                            <label class="form-check-label" for="hasil">
-                                                                M
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" value="K" name="hasil" id="hasil2" <?php echo ($data['hasil'] == 'K') ? " checked" : "" ?> required>
-                                                            <label class="form-check-label" for="hasil2">
-                                                                K</h4>
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" value="H" name="hasil" id="hasil3" <?php echo ($data['hasil'] == 'H') ? " checked" : "" ?> required>
-                                                            <label class="form-check-label" for="hasil3">
-                                                                H</h4>
-                                                            </label>
-                                                        </div>
+                                                        <select class="form-select select2" name="id_hasil" id="id_hasil" style="width: 250px;">
+                                                        <?php 
+                                                        include '../../setting/koneksi.php';
+                                                        $result = mysqli_query($konek, "SELECT * FROM tb_hasil");
+                                                        while($row = mysqli_fetch_array($result)){?> 
+                                                        <option value="<?php echo $row['id_hasil']?>" <?php if($data["id_hasil"] == $row['id_hasil']){echo "SELECTED";} ?>><?php 
+                                                        $hasil = $row['hasil'];
+                                                        $hasil = $hasil == 'M'
+                                                                    ? 'Merah'
+                                                                    : ($hasil == 'K'
+                                                                    ? 'Kuning'
+                                                                    : ($hasil == 'H'
+                                                                    ? 'Hijau'
+                                                                    : 'Kosong'
+                                                                    )
+                                                                    );
+                                                        echo $hasil;
+                                                        ?></option>
+                                                        <?php } ?>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <!-- end hasil -->

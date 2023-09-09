@@ -9,9 +9,13 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
 
 
 $kel = $_SESSION['username'];
+$stat = $_SESSION['status'];
 $kelurahan = $_POST['kelurahan'];
 $bulan = $_POST['bulan'];
 $bulan2 = $_POST['bulan2'];
+if($stat == 'kpm'){
+    $nama_kpm = $_POST['nama_kpm'];
+}
 if($bulan == 1 and $bulan2 == 3){
     $kuartal = "Kuartal 1";
 } else if($bulan == 4 and $bulan2 == 6){
@@ -21,13 +25,13 @@ if($bulan == 1 and $bulan2 == 3){
 } else if($bulan == 10 and $bulan2 == 12){
     $kuartal = "Kuartal 4";
 }
-if($kel == 'admin'){
+if($stat !== 'kpm'){
     if(isset($_POST['cetak'])){
-        $query = mysqli_query($konek, "SELECT * FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
+        $query = mysqli_query($konek, "SELECT * FROM (((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) INNER JOIN tb_status_kehamilan s ON b.id_status_kehamilan=s.id_status_kehamilan) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2 ORDER BY b.kelurahan");
     }
     
     if(isset($_POST['cetak_semua'])){
-        $query = mysqli_query($konek, "SELECT * FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.bulan BETWEEN $bulan AND $bulan2");
+        $query = mysqli_query($konek, "SELECT * FROM (((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) INNER JOIN tb_status_kehamilan s ON b.id_status_kehamilan=s.id_status_kehamilan) WHERE b.bulan BETWEEN $bulan AND $bulan2 ORDER BY b.kelurahan");
     }
 } else {
     $kelurahan = $_POST['kelurahan'];
@@ -44,11 +48,11 @@ if($kel == 'admin'){
         $kuartal = "Kuartal 4";
     }
     if(isset($_POST['cetak'])){
-        $query = mysqli_query($konek, "SELECT * FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
+        $query = mysqli_query($konek, "SELECT * FROM (((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) INNER JOIN tb_status_kehamilan s ON b.id_status_kehamilan=s.id_status_kehamilan) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2 ORDER BY b.kelurahan");
     }
     
     if(isset($_POST['cetak_semua'])){
-        $query = mysqli_query($konek, "SELECT * FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel'");
+        $query = mysqli_query($konek, "SELECT * FROM (((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) INNER JOIN tb_status_kehamilan s ON b.id_status_kehamilan=s.id_status_kehamilan) WHERE b.kelurahan='$kel' ORDER BY b.kelurahan");
     }
 }
 
@@ -93,9 +97,19 @@ if($kel == 'admin'){
         <thead>
             <tr>
                 <th rowspan=3 style="text-align:center; vertical-align: middle;" style="text-align:center; vertical-align: middle;">No</th>
+                <?php if($stat !== 'kpm' && isset($_POST['cetak_semua'])){ ?>
+                <th rowspan=3 style="text-align:center; vertical-align: middle;">Kecamatan</th>
+                <th rowspan=3 style="text-align:center; vertical-align: middle;">Kelurahan</th>
+                <?php } ?>
                 <th rowspan=3 style="text-align:center; vertical-align: middle;">Nama Ibu</th>
                 <th rowspan=3 style="text-align:center; vertical-align: middle;">Status Kehamilan (KEK/RISTI)</th>
-                <th colspan="9" style="text-align:center; vertical-align: middle;"><?php echo $kuartal; ?></th>
+                <th colspan="9" style="text-align:center; vertical-align: middle;"><?php 
+                if(isset($_POST['cetak'])){
+                    echo $kuartal;
+                } else {
+                    echo 'Kuartal';
+                }
+                ?></th>
                 <th colspan=3 rowspan=2 style="text-align:center; vertical-align: middle;">Tingkat Konvergensi Indikator</th>
             </tr>
             <tr>
@@ -141,6 +155,10 @@ if($kel == 'admin'){
             </tr>
             <tr>
                 <td align="center" class="td1"></td>
+                <?php if($stat !== 'kpm' && isset($_POST['cetak_semua'])){ ?>
+                <td style="text-align:center;" class="td1"></td>
+                <td style="text-align:center;" class="td1"></td>
+                <?php } ?>
                 <td align="center" class="td1">a</td>
                 <td align="center" class="td1">b</td>
                 <td align="center" class="td1">c</td>
@@ -168,6 +186,10 @@ if($kel == 'admin'){
             ?>
             <tr>
                 <td class="td1"><?php echo $no++ ?></td>
+                <?php if($stat !== 'kpm' && isset($_POST['cetak_semua'])){ ?>
+                <td class="td1"><?php echo $row['kecamatan']; ?></td>
+                <td class="td1"><?php echo $row['kelurahan']; ?></td>
+                <?php } ?>
                 <td class="td1"><?php echo $row['nama_ibu']  ?></td>
                 <td class="td1"><?php echo $row['status_kehamilan']  ?></td>
                 <td class="td1"><?php echo $row['usia_kehamilan']  ?></td>
@@ -191,7 +213,7 @@ if($kel == 'admin'){
             </tr>
             <tr>
                 <!-- <td rowspan=4 class="td1"></td> -->
-                <td rowspan=4 class="td1">Tingkat Konvergensi Indikator</td>
+                <td rowspan=4 colspan=3 class="td1">Tingkat Konvergensi Indikator</td>
                 
             </tr>
             <tr>
@@ -199,13 +221,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_kehamilan='Y' AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_kehamilan='Y' AND b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_kehamilan='Y' AND b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_kehamilan='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -216,13 +238,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.dapat_pilfe) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.dapat_pilfe='Y' AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.dapat_pilfe) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.dapat_pilfe='Y' AND b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.dapat_pilfe) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.dapat_pilfe='Y' AND b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.dapat_pilfe) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.dapat_pilfe='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -233,13 +255,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_nifas) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_nifas='Y'");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_nifas) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_nifas='Y' AND b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_nifas) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_nifas='Y' AND b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_nifas) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_nifas='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -250,13 +272,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.konseling_gizi) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.konseling_gizi='Y' AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.konseling_gizi) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.konseling_gizi='Y' AND b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.konseling_gizi) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.konseling_gizi='Y' AND b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.konseling_gizi) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.konseling_gizi='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -267,13 +289,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kunjungan_rumah='Y'");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kunjungan_rumah='Y' AND b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kunjungan_rumah='Y' AND b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kunjungan_rumah='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -284,13 +306,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kepem_air_bersih='Y' AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kepem_air_bersih='Y' AND b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kepem_air_bersih='Y' AND b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kepem_air_bersih='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -301,13 +323,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kepem_jamban='Y' AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kepem_jamban='Y' AND b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kepem_jamban='Y' AND b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kepem_jamban='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -318,13 +340,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.jamkes='Y' AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.jamkes='Y' AND b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.jamkes='Y' AND b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.jamkes='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -335,13 +357,13 @@ if($kel == 'admin'){
                 <td rowspan=4 style="text-align:center; vertical-align: middle;">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(a.jml_diterima_lengkap) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE a.jml_diterima_lengkap=6 AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(a.jml_diterima_lengkap) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE a.jml_diterima_lengkap=6 AND b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(a.jml_diterima_lengkap) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE a.jml_diterima_lengkap=6 AND b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(a.jml_diterima_lengkap) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE a.jml_diterima_lengkap=6 AND b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -352,13 +374,13 @@ if($kel == 'admin'){
                 <td rowspan=4 style="text-align:center; vertical-align: middle;">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(*) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(*) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(*) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(*) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -369,13 +391,13 @@ if($kel == 'admin'){
                 <td rowspan=4 style="text-align:center; vertical-align: middle;">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(a.persen) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE a.persen=100 AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(a.persen) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE a.persen=100 AND b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(a.persen) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE a.persen=100 AND b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(a.persen) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE a.persen=100 AND b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -402,13 +424,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -419,13 +441,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.dapat_pilfe) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.dapat_pilfe) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.dapat_pilfe) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.dapat_pilfe) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -441,13 +463,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.konseling_gizi) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.konseling_gizi) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.konseling_gizi) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.konseling_gizi) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -463,13 +485,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -480,13 +502,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -497,13 +519,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel' AND b.bulan BETWEEN $bulan AND $bulan2");
                     } else if($stat == 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kel'");
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $query = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.bulan BETWEEN $bulan AND $bulan2");
                     }
                     
@@ -519,13 +541,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_kehamilan='Y' AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
                         $jml_harus = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe2 = mysqli_fetch_array($jml_harus);
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_kehamilan) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_kehamilan='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
@@ -562,13 +584,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.dapat_pilfe) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.dapat_pilfe='Y' AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
                         $jml_harus = mysqli_query($konek, "SELECT COUNT(c.dapat_pilfe) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe2 = mysqli_fetch_array($jml_harus);
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.dapat_pilfe) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.dapat_pilfe='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
@@ -604,13 +626,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_nifas) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_nifas='Y' AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
                         $jml_harus = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_nifas) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe2 = mysqli_fetch_array($jml_harus);
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.pemeriksaan_nifas) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.pemeriksaan_nifas='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
@@ -637,13 +659,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.konseling_gizi) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.konseling_gizi='Y' AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
                         $jml_harus = mysqli_query($konek, "SELECT COUNT(c.konseling_gizi) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe2 = mysqli_fetch_array($jml_harus);
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.konseling_gizi) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.konseling_gizi='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
@@ -680,13 +702,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kunjungan_rumah='Y' AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
                         $jml_harus = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe2 = mysqli_fetch_array($jml_harus);
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.kunjungan_rumah) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kunjungan_rumah='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
@@ -713,13 +735,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kepem_air_bersih='Y' AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
                         $jml_harus = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe2 = mysqli_fetch_array($jml_harus);
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.kepem_air_bersih) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kepem_air_bersih='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
@@ -756,13 +778,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kepem_jamban='Y' AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
                         $jml_harus = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe2 = mysqli_fetch_array($jml_harus);
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.kepem_jamban) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.kepem_jamban='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
@@ -799,13 +821,13 @@ if($kel == 'admin'){
                 <td class="td1">
                     <?php
                     include ('../setting/koneksi.php');
-                    if($stat == 'pegawai' && isset($_POST['cetak'])){
+                    if($stat !== 'kpm' && isset($_POST['cetak'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.jamkes='Y' AND b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
                         $jml_harus = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE b.kelurahan='$kelurahan' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe2 = mysqli_fetch_array($jml_harus);
-                    } else if($stat == 'pegawai' && isset($_POST['cetak_semua'])){
+                    } else if($stat !== 'kpm' && isset($_POST['cetak_semua'])){
                         $jml_diterima = mysqli_query($konek, "SELECT COUNT(c.jamkes) FROM ((tb_formulir3a a INNER JOIN tb_bumil b ON a.id_bumil=b.id_bumil) INNER JOIN tb_formulir2a c ON a.id_formulir_duaA=c.id_formulir_duaA) WHERE c.jamkes='Y' AND b.bulan BETWEEN $bulan AND $bulan2");
                         $exe = mysqli_fetch_array($jml_diterima);
 
@@ -871,8 +893,8 @@ function tgl_indo($tanggal){
 	return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
 }
 ?>
-<?php if($_SESSION['username'] == 'admin'){?>
-<div class="footer" style="margin-left: 40rem;">
+<?php if($_SESSION['status'] !== 'kpm'){?>
+<div class="footer" style="margin-left: 33rem;">
     <?php if(isset($_POST['cetak_semua']) || isset($_POST['cetak'])){?>
         <p>Banjarmasin, <?php echo tgl_indo(date('Y-m-d')) ?></p>
     <?php

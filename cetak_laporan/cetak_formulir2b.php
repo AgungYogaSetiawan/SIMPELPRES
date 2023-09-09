@@ -9,15 +9,19 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
 
 
 $kel = $_SESSION['username'];
+$stat = $_SESSION['status'];
 $kelurahan = $_POST['kelurahan'];
 $bulan = $_POST['bulan'];
 $tahun = $_POST['tahun'];
-if($kel == 'admin'){
+if($stat == 'kpm'){
+    $nama_kpm = $_POST['nama_kpm'];
+}
+if($stat !== 'kpm'){
     if(isset($_POST['cetak'])){
-        $query = mysqli_query($konek,"SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta WHERE b.kelurahan='$kelurahan' AND b.bulan=$bulan AND b.tahun=$tahun");
+        $query = mysqli_query($konek,"SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak INNER JOIN tb_hasil h ON b.id_hasil=h.id_hasil WHERE b.kelurahan='$kelurahan' AND b.bulan=$bulan AND b.tahun=$tahun ORDER BY b.kelurahan");
     }
     if(isset($_POST['cetak_semua'])){
-        $query = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta");
+        $query = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak INNER JOIN tb_hasil h ON b.id_hasil=h.id_hasil ORDER BY b.kelurahan");
     }
 } else {
     $kelurahan = $_POST['kelurahan'];
@@ -25,10 +29,10 @@ if($kel == 'admin'){
     $tahun = $_POST['tahun'];
     $nama_kpm = $_POST['nama_kpm'];
     if(isset($_POST['cetak'])){
-            $query = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta WHERE b.kelurahan='$kel' AND b.bulan=$bulan AND b.tahun=$tahun");
+            $query = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak INNER JOIN tb_hasil h ON b.id_hasil=h.id_hasil WHERE b.kelurahan='$kel' AND b.bulan=$bulan AND b.tahun=$tahun ORDER BY b.kelurahan");
     }
     if(isset($_POST['cetak_semua'])){
-        $query = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta WHERE b.kelurahan='$kel'");
+        $query = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak INNER JOIN tb_hasil h ON b.id_hasil=h.id_hasil WHERE b.kelurahan='$kel' ORDER BY b.kelurahan");
     }
 }
 
@@ -114,6 +118,10 @@ function  getBulan($bln){
         <thead>
             <tr>
                 <th rowspan=3 style="text-align:center; vertical-align: middle;" valign="middle">No</th>
+                <?php if($stat !== 'kpm' && isset($_POST['cetak_semua'])){ ?>
+                <th rowspan=3 style="text-align:center; vertical-align: middle;">Kecamatan</th>
+                <th rowspan=3 style="text-align:center; vertical-align: middle;">Kelurahan</th>
+                <?php } ?>
                 <th rowspan=3 style="text-align:center; vertical-align: middle;">No Register (KIA)</th>
                 <th rowspan=3 style="text-align:center; vertical-align: middle;">Nama Anak</th>
                 <th style="text-align:center; vertical-align: middle;" rowspan=3>
@@ -121,7 +129,26 @@ function  getBulan($bln){
                 </th>
                 <th rowspan=3 style="text-align:center; vertical-align: middle;">Tanggal Lahir Anak (Tgl/Bln/Thn)</th>
                 <th rowspan=3 style="text-align:center; vertical-align: middle;">Status Gizi Anak (Normal/Buruk/Kurang/Stunting)</th>
-                <th colspan="13" style="text-align:center; vertical-align: middle;"><?php echo getBulan($bulan) ?> <?php echo $tahun ?></th>
+                <th colspan="13" style="text-align:center; vertical-align: middle;">
+                <?php
+                if(isset($_POST['cetak'])){
+                    echo getBulan($bulan);
+                } else if(isset($_POST['cetak_semua'])){
+                    $bulan = date('n');
+                    $nama_bulan = [
+                        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+                    ];
+                    echo $nama_bulan[$bulan - 1];
+                }
+                ?> 
+                <?php 
+                if(isset($_POST['cetak'])){
+                    echo $tahun;
+                } else if(isset($_POST['cetak_semua'])){
+                    echo date('Y');
+                }
+                ?>
+                </th>
             </tr>
             <tr>
                 <th colspan=2 style="text-align:center; vertical-align: middle;">Umur dan Status Tikar</th>
@@ -172,6 +199,10 @@ function  getBulan($bln){
             </tr>
             <tr>
                 <td></td>
+                <?php if($stat !== 'kpm' && isset($_POST['cetak_semua'])){ ?>
+                <td style="text-align:center;" class="td1"></td>
+                <td style="text-align:center;" class="td1"></td>
+                <?php } ?>
                 <td style="text-align:center; vertical-align: middle;">a</td>
                 <td style="text-align:center; vertical-align: middle;">b</td>
                 <td style="text-align:center; vertical-align: middle;">c</td>
@@ -202,13 +233,32 @@ function  getBulan($bln){
             ?>
             <tr>
                 <td><?php echo $no++ ?></td>
+                <?php if($stat !== 'kpm' && isset($_POST['cetak_semua'])){ ?>
+                <td class="td1"><?php echo $row['kecamatan']; ?></td>
+                <td class="td1"><?php echo $row['kelurahan']; ?></td>
+                <?php } ?>
                 <td><?php echo $row['no_register']; ?></td>
                 <td><?php echo $row['nama_anak']; ?></td>
-                <td style="text-align:center; vertical-align: middle;"><?php echo $row['jk']; ?></td>
+                <td style="text-align:center; vertical-align: middle;"><?php 
+                $jk = $row['jk'];
+                echo $jk == 'L' ? 'Laki-laki' : 'Perempuan';
+                ?></td>
                 <td style="text-align:right; vertical-align: middle;"><?php echo date("d/m/Y", strtotime($row['tgl_lahir_anak'])); ?></td>
-                <td style="text-align:center; vertical-align: middle;"><?php echo $row['status_gizi_anak']; ?></td>
+                <td style="text-align:center; vertical-align: middle;"><?php echo $row['status_gizi']; ?></td>
                 <td style="text-align:center; vertical-align: middle;"><?php echo $row['umur'] ?></td>
-                <td style="text-align:center; vertical-align: middle;"><?php echo $row['hasil'] ?></td>
+                <td style="text-align:center; vertical-align: middle;"><?php 
+                $hasil = $row['hasil'];
+                $hasil = $hasil == 'M'
+                            ? 'Merah'
+                            : ($hasil == 'K'
+                            ? 'Kuning'
+                            : ($hasil == 'H'
+                            ? 'Hijau'
+                            : 'Kosong'
+                            )
+                            );
+                echo $hasil;
+                ?></td>
                 <td style="text-align:center; vertical-align: middle;">
                 <?php 
                 if($row['pemberian_imunisasi_dasar'] == 'Y'){
@@ -353,8 +403,8 @@ function tgl_indo($tanggal){
 	return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
 }
 ?>
-<?php if($_SESSION['username'] == 'admin'){?>
-<div class="footer" style="margin-left: 40rem;">
+<?php if($_SESSION['status'] !== 'kpm'){?>
+<div class="footer" style="margin-left: 55rem;">
     <?php if(isset($_POST['cetak_semua'])){?>
         <p>Banjarmasin,	<?php echo tgl_indo(date('Y-m-d')) ?></p>
     <?php
@@ -368,7 +418,7 @@ function tgl_indo($tanggal){
     <p><u><b>Drs. M. HELFIANNOOR, M.Si</b></u><br>Pembina Tingkat I<br>NIP. 19730719 199302 1 002</p>
 </div>
 <?php } else {?>
-    <div class="footer" style="margin-left: 40rem;">
+    <div class="footer" style="margin-left: 55rem;">
     <p>Banjarmasin,	<?php echo tgl_indo(date('Y-m-d')) ?></p>
     <p>KPM <?php echo $kelurahan; ?></p>
     <br>

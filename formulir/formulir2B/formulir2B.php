@@ -21,7 +21,7 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
     <meta name="author" content="">
     <link rel="icon" type="image/png" href="../../img/logo_pemko_bjm2.png">
 
-    <title>SIMPELKPM - Laporan 2.B</title>
+    <title>SIMPELPRES - Laporan 2.B</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -51,103 +51,7 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-success    sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../dashboard.php">
-                <div class="sidebar-brand-icon">
-                    <i><img src="../../img/logo_pemko_bjm2.png" style="width: 42px;"></i>
-                </div>
-                <div class="sidebar-brand-text mx-1">SIMPELKPM</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="../../dashboard.php">
-                    <i class="fas fa-fw fa-home"></i>
-                    <span>Beranda</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <?php if($_SESSION['status'] == 'kpm') {?>
-            <div class="sidebar-heading">
-                Master
-            </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-fw fa-file"></i>
-                    <span>Data Master</span>
-                </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../data_master/data_kecamatan.php">Data Kecamatan</a>
-                        <a class="collapse-item" href="../../data_master/data_kelurahan.php">Data Kelurahan</a>
-                        <a class="collapse-item" href="../../data_master/data_bumil/data_bumil.php">Data Ibu Hamil</a>
-                        <a class="collapse-item" href="../../data_master/data_batita/data_batita.php">Data Anak 0-2 Tahun</a>
-                        <a class="collapse-item" href="../../data_master/data_balita/data_balita.php">Data Anak >2-6 Tahun</a>
-                    </div>
-                </div>
-            </li>
-            <?php } ?>
-
-            <div class="sidebar-heading">
-                Proses
-            </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-clipboard"></i>
-                    <span>Berkas Laporan</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../formulir/formulir2A/formulir2A.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Ibu Hamil">Data Laporan 2.A</a>
-                        <a class="collapse-item" href="" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Anak 0-2 Tahun">Data Laporan 2.B</a>
-                        <a class="collapse-item" href="../../formulir/formulir2C/formulir2C.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun">Data Laporan 2.C</a>
-                        <a class="collapse-item" href="../../formulir/formulir3A/formulir3A.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Hasil Pemantauan Tiga Bulanan Ibu Hamil">Data Laporan 3.A</a>
-                        <a class="collapse-item" href="../../formulir/formulir3B/formulir3B.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Tiga Bulanan Bagi Anak 0-2 Tahun">Data Laporan 3.B</a>
-                    </div>
-                </div>
-            </li>
-
-            <div class="sidebar-heading">
-                Laporan
-            </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                    <i class="fas fa-fw fa-print"></i>
-                    <span>Cetak Laporan</span>
-                </a>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan2a.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Ibu Hamil">Cetak Laporan 2.A</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan2b.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Anak 0-2 Tahun">Cetak Laporan 2.B</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan2c.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun">Cetak Laporan 2.C</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan3a.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Hasil Pemantauan Tiga Bulanan Bagi Ibu Hamil">Cetak Laporan 3.A</a>
-                        <a class="collapse-item" href="../../cetak_laporan/cetak_laporan3b.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Tiga Bulanan Bagi Anak 0-2 Tahun">Cetak Laporan 3.B</a>
-                    </div>
-                </div>
-                
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+        <?php include '../../template/sidebar.php'; ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -175,7 +79,7 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                         $kel = $_SESSION['username'];
                                         $stat = $_SESSION['status'];
                                         //query menampilkan nama unit kerja ke dalam combobox
-                                        if($stat == 'pegawai'){
+                                        if($stat == 'pegawai' or $_SESSION['status'] == 'administrator'){
                                             $query = mysqli_query($konek, "SELECT * FROM tb_kelurahan GROUP BY kelurahan ORDER BY kelurahan");
                                         } else{
                                             $query = mysqli_query($konek, "SELECT * FROM tb_kelurahan WHERE kelurahan='$kel'");
@@ -222,15 +126,16 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                             </div>
                             
                             <button type="submit" name="cari" class="btn btn-primary btn-sm mt-2"><i class="fa fa fa-search"></i> Tampilkan</button>
-                            <a href="formulir2B.php">Refresh</a>
+                            <a href="formulir2B.php" class="btn btn-secondary btn-sm mt-2"><i class="fa fa fa-sync"></i> Refresh</a>
                         </form>
                         <!-- end form pencarian -->
                         </div>
                         </div>
                         <!-- table -->
-                        <?php if($_SESSION['status'] == 'kpm') {?>
+                        <?php if($_SESSION['status'] !== 'pegawai') {?>
                         <a href="tambah_data.php" class="btn btn-success btn-sm"><i class="fa fa fa-plus"></i> Tambah Data</a>
                         <?php } ?>
+                        <a href="../../cetak_laporan/cetak_laporan2b.php" class="btn btn-warning btn-sm"><i class="fa fa fa-print"></i> Cetak</a>
                         <div class="card mb-4 mt-2">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold">Data Laporan 2B Pemantauan Bulanan Anak 0-2 Tahun</h6>
@@ -342,18 +247,18 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             $kelurahan = trim($_POST['kelurahan']);
                                             $bulan = trim($_POST['bln']);
                                             $tahun = trim($_POST['tahun']);
-                                            $query = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta WHERE b.kelurahan='$kelurahan' AND b.bulan=$bulan AND b.tahun=$tahun ORDER BY kelurahan DESC LIMIT $halaman_awal, $batas");
-                                            $query_halaman = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta WHERE b.kelurahan='$kelurahan' AND b.bulan=$bulan AND b.tahun=$tahun ORDER BY kelurahan DESC");
+                                            $query = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak INNER JOIN tb_hasil h ON b.id_hasil=h.id_hasil WHERE b.kelurahan='$kelurahan' AND b.bulan='$bulan' AND b.tahun='$tahun' ORDER BY b.kelurahan LIMIT $halaman_awal, $batas");
+                                            $query_halaman = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak INNER JOIN tb_hasil h ON b.id_hasil=h.id_hasil WHERE b.kelurahan='$kelurahan' AND b.bulan='$bulan' AND b.tahun='$tahun' ORDER BY b.kelurahan");
                                             $jumlah_data = mysqli_num_rows($query_halaman);
 				                            $total_halaman = ceil($jumlah_data / $batas);
-                                        } else if($stat == 'pegawai'){
-                                            $query = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta LIMIT $halaman_awal, $batas");
-                                            $query_halaman = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta");
+                                        } else if($stat == 'pegawai' or $_SESSION['status'] == 'administrator'){
+                                            $query = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak INNER JOIN tb_hasil h ON b.id_hasil=h.id_hasil ORDER BY b.kelurahan LIMIT $halaman_awal, $batas");
+                                            $query_halaman = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak INNER JOIN tb_hasil h ON b.id_hasil=h.id_hasil ORDER BY b.kelurahan");
                                             $jumlah_data = mysqli_num_rows($query_halaman);
 				                            $total_halaman = ceil($jumlah_data / $batas);
                                         } else if($stat == 'kpm'){
-                                            $query = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta WHERE b.kelurahan='$kel' LIMIT $halaman_awal, $batas");
-                                            $query_halaman = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta WHERE b.kelurahan='$kel'");
+                                            $query = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak INNER JOIN tb_hasil h ON b.id_hasil=h.id_hasil WHERE b.kelurahan='$kel' ORDER BY b.kelurahan LIMIT $halaman_awal, $batas");
+                                            $query_halaman = mysqli_query($konek, "SELECT * FROM tb_formulir2b f INNER JOIN tb_baduta b ON f.id_baduta = b.id_baduta INNER JOIN tb_gizi_anak g ON b.id_gizi_anak=g.id_gizi_anak INNER JOIN tb_hasil h ON b.id_hasil=h.id_hasil WHERE b.kelurahan='$kel' ORDER BY b.kelurahan");
                                             $jumlah_data = mysqli_num_rows($query_halaman);
 				                            $total_halaman = ceil($jumlah_data / $batas);
                                         }
@@ -408,11 +313,26 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             <td class="td1"><?php echo $row['tahun']; ?></td>
                                             <td class="td1"><?php echo $row['no_register']; ?></td>
                                             <td><?php echo $row['nama_anak']; ?></td>
-                                            <td class="td1"><?php echo $row['jk']; ?></td>
+                                            <td class="td1"><?php 
+                                            $jk = $row['jk'];
+                                            echo $jk == 'L' ? 'Laki-laki' : 'Perempuan';
+                                            ?></td>
                                             <td class="td1"><?php echo date("d/m/Y", strtotime($row['tgl_lahir_anak'])); ?></td>
-                                            <td class="td1"><?php echo $row['status_gizi_anak']; ?></td>
+                                            <td class="td1"><?php echo $row['status_gizi']; ?></td>
                                             <td class="td1"><?php echo $row['umur'] ?></td>
-                                            <td class="td1"><?php echo $row['hasil'] ?></td>
+                                            <td class="td1"><?php 
+                                            $hasil = $row['hasil'];
+                                            $hasil = $hasil == 'M'
+                                                        ? 'Merah'
+                                                        : ($hasil == 'K'
+                                                        ? 'Kuning'
+                                                        : ($hasil == 'H'
+                                                        ? 'Hijau'
+                                                        : 'Kosong'
+                                                        )
+                                                        );
+                                            echo $hasil;
+                                            ?></td>
                                             <td class="td1">
                                             <?php 
                                             if($row['pemberian_imunisasi_dasar'] == 'Y'){
@@ -525,7 +445,7 @@ if(!isset($_SESSION['id_user']) && $_SESSION['id_user'] == false){
                                             ?></td>
                                             <?php echo "
                                             <td>";
-                                            if($_SESSION['status'] == 'kpm'){
+                                            if($_SESSION['status'] !== 'pegawai'){
                                             echo "<div class='btn-row'>
                                             <div class='btn-group'>
                                             <a href='edit_data.php?id_formulir_duaB=$row[0]' class='btn btn-warning btn-sm mr-2'><i class='fa fa fa-pen'></i></a>

@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" type="image/png" href="../img/logo_pemko_bjm2.png">
 
-    <title>SIMPELKPM - Cetak Laporan 2B</title>
+    <title>SIMPELPRES - Cetak Laporan 2B</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -51,103 +51,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../dashboard.php">
-                <div class="sidebar-brand-icon">
-                    <i><img src="../img/logo_pemko_bjm2.png" style="width: 42px;"></i>
-                </div>
-                <div class="sidebar-brand-text mx-1">SIMPELKPM</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="../dashboard.php">
-                    <i class="fas fa-fw fa-home"></i>
-                    <span>Beranda</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <?php if($_SESSION['status'] == 'kpm') {?>
-            <div class="sidebar-heading">
-                Master
-            </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                    aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-fw fa-file"></i>
-                    <span>Data Master</span>
-                </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../data_master/data_kecamatan.php">Data Kecamatan</a>
-                        <a class="collapse-item" href="../data_master/data_kelurahan.php">Data Kelurahan</a>
-                        <a class="collapse-item" href="../data_master/data_bumil/data_bumil.php">Data Ibu Hamil</a>
-                        <a class="collapse-item" href="../data_master/data_batita/data_batita.php">Data Anak 0-2 Tahun</a>
-                        <a class="collapse-item" href="../data_master/data_balita/data_balita.php">Data Anak >2-6 Tahun</a>
-                    </div>
-                </div>
-            </li>
-            <?php } ?>
-
-            <div class="sidebar-heading">
-                Proses
-            </div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-clipboard"></i>
-                    <span>Berkas Laporan</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../formulir/formulir2A/formulir2A.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Ibu Hamil">Data Laporan 2.A</a>
-                        <a class="collapse-item" href="../formulir/formulir2B/formulir2B.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Anak 0-2 Tahun">Data Laporan 2.B</a>
-                        <a class="collapse-item" href="../formulir/formulir2C/formulir2C.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun">Data Laporan 2.C</a>
-                        <a class="collapse-item" href="../formulir/formulir3A/formulir3A.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Hasil Pemantauan Tiga Bulanan Ibu Hamil">Data Laporan 3.A</a>
-                        <a class="collapse-item" href="../formulir/formulir3B/formulir3B.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Tiga Bulanan Bagi Anak 0-2 Tahun">Data Laporan 3.B</a>
-                    </div>
-                </div>
-            </li>
-
-            <div class="sidebar-heading">
-                Laporan
-            </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                    <i class="fas fa-fw fa-print"></i>
-                    <span>Cetak Laporan</span>
-                </a>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="cetak_laporan2a.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Ibu Hamil">Cetak Laporan 2.A</a>
-                        <a class="collapse-item" href="" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Bulanan Anak 0-2 Tahun">Cetak Laporan 2.B</a>
-                        <a class="collapse-item" href="cetak_laporan2c.php" data-toggle="tooltip" data-placement="top" title="Data Pemantauan Layanan dan Sasaran Paud Anak >2-6 Tahun">Cetak Laporan 2.C</a>
-                        <a class="collapse-item" href="cetak_laporan3a.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Hasil Pemantauan Tiga Bulanan Bagi Ibu Hamil">Cetak Laporan 3.A</a>
-                        <a class="collapse-item" href="cetak_laporan3b.php" data-toggle="tooltip" data-placement="top" title="Data Rekapitulasi Tiga Bulanan Bagi Anak 0-2 Tahun">Cetak Laporan 3.B</a>
-                    </div>
-                </div>
-                
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+        <?php include '../template/sidebar2.php'; ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -200,84 +104,83 @@
                 <!-- Content Row -->
                 <div class="row">
                     <div class="col-lg-12">
-                    <div class="panel">
-                        <div class="panel-heading">
-                        <h4 class="page-header fw-bolder"><i class="fa fa fa-bars fw-bolder"></i> CETAK LAPORAN 2B PEMANTAUAN BULANAN BAGI ANAK 0-2 TAHUN</h4>
-                        </div>
-                        <div class="panel-body">
-                        <hr>
-                        <form action="cetak_formulir2b.php" method="post" id="form_cetak" target="_blank">
-                                <table>
-                                <tr>
-                                    <td>Bulan</td>
-                                    <td>: 
-                                        <select class="select2" name="bulan" id="bulan" style="width: 193px;">
-                                            <option value="1">Januari</option>
-                                            <option value="2">Februari</option>
-                                            <option value="3">Maret</option>
-                                            <option value="4">April</option>
-                                            <option value="5">Mei</option>
-                                            <option value="6">Juni</option>
-                                            <option value="7">Juli</option>
-                                            <option value="8">Agustus</option>
-                                            <option value="9">September</option>
-                                            <option value="10">Oktober</option>
-                                            <option value="11">November</option>
-                                            <option value="12">Desember</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Tahun</td>
-                                    <td>: 
-                                        <select class="select2" name="tahun" id="tahun" style="width: 193px;">
-                                            <?php
-                                            for ($x = 2015; $x <= 2040; $x++) {
-                                            ?>
-                                            <option value="<?php echo $x; ?>"><?php echo $x; ?></option>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <?php if($_SESSION['status'] !== 'pegawai'){?>
+                        <div class="card mb-4 mt-2">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold">CETAK LAPORAN 2B PEMANTAUAN BULANAN BAGI ANAK 0-2 TAHUN</h6>
+                            </div>
+                            <div class="card-body">
+                                <form action="cetak_formulir2b.php" method="post" id="form_cetak" target="_blank">
+                                    <table>
                                     <tr>
-                                        <td>Nama KPM</td>
-                                        <td>: <input type="text" name="nama_kpm" style="width:193px;"></td>
+                                        <td>Bulan</td>
+                                        <td>: 
+                                            <select class="select2" name="bulan" id="bulan" style="width: 193px;">
+                                                <option value="1">Januari</option>
+                                                <option value="2">Februari</option>
+                                                <option value="3">Maret</option>
+                                                <option value="4">April</option>
+                                                <option value="5">Mei</option>
+                                                <option value="6">Juni</option>
+                                                <option value="7">Juli</option>
+                                                <option value="8">Agustus</option>
+                                                <option value="9">September</option>
+                                                <option value="10">Oktober</option>
+                                                <option value="11">November</option>
+                                                <option value="12">Desember</option>
+                                            </select>
+                                        </td>
                                     </tr>
-                                <?php } ?>
-                                <tr>
-                                    <td>Kelurahan </td>
-                                    <td>: 
-                                        <select class="select2" name="kelurahan" style="width:193px;">
-                                            <?php
-                                            include '../setting/koneksi.php';
-                                            $kel = $_SESSION['username'];
-                                            //query menampilkan nama unit kerja ke dalam combobox
-                                            if($kel == 'admin') {
-                                                $query = mysqli_query($konek, "SELECT * FROM tb_kelurahan GROUP BY kelurahan ORDER BY kelurahan");
-                                            }else {
-                                                $query = mysqli_query($konek, "SELECT * FROM tb_kelurahan WHERE kelurahan='$kel' GROUP BY kelurahan ORDER BY kelurahan");
-                                            }
-                                            
-                                            while ($data = mysqli_fetch_array($query)) {
-                                            ?>
-                                            <option value="<?=$data['kelurahan'];?>"><?php echo $data['kelurahan'];?></option>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="left" style="padding-top:20px;"><button type="submit" name="cetak" class="btn btn-success btn-sm mr-3"><i class="fa fa fa-print"></i> Cetak Laporan</a></td>
-                                    <td align="left" style="padding-top:20px;"><button type="submit" name="cetak_semua" class="btn btn-success btn-sm"><i class="fa fa fa-print"></i> Cetak Semua</a></td>
-                                </tr>
-                                </table>
-                            </form>
+                                    <tr>
+                                        <td>Tahun</td>
+                                        <td>: 
+                                            <select class="select2" name="tahun" id="tahun" style="width: 193px;">
+                                                <?php
+                                                for ($x = 2015; $x <= 2040; $x++) {
+                                                ?>
+                                                <option value="<?php echo $x; ?>"><?php echo $x; ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <?php if($_SESSION['status'] == 'kpm'){?>
+                                        <tr>
+                                            <td>Nama KPM</td>
+                                            <td>: <input type="text" name="nama_kpm" style="width:193px;"></td>
+                                        </tr>
+                                    <?php } ?>
+                                    <tr>
+                                        <td>Kelurahan </td>
+                                        <td>: 
+                                            <select class="select2" name="kelurahan" style="width:193px;">
+                                                <?php
+                                                include '../setting/koneksi.php';
+                                                $kel = $_SESSION['username'];
+                                                //query menampilkan nama unit kerja ke dalam combobox
+                                                if($stat == 'pegawai' or $_SESSION['status'] == 'administrator') {
+                                                    $query = mysqli_query($konek, "SELECT * FROM tb_kelurahan GROUP BY kelurahan ORDER BY kelurahan");
+                                                }else {
+                                                    $query = mysqli_query($konek, "SELECT * FROM tb_kelurahan WHERE kelurahan='$kel' GROUP BY kelurahan ORDER BY kelurahan");
+                                                }
+                                                
+                                                while ($data = mysqli_fetch_array($query)) {
+                                                ?>
+                                                <option value="<?=$data['kelurahan'];?>"><?php echo $data['kelurahan'];?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" style="padding-top:20px;"><button type="submit" name="cetak" class="btn btn-success btn-sm"><i class="fa fa fa-print"></i> Cetak</a></td>
+                                        <td align="left" style="padding-top:20px;"><button type="submit" name="cetak_semua" class="btn btn-success btn-sm"><i class="fa fa fa-print"></i> Cetak Semua</a></td>
+                                    </tr>
+                                    </table>
+                                </form>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
 
