@@ -1,5 +1,5 @@
 <?php
-$konek = mysqli_connect("localhost", "root", "", "simpelkpm_db");
+$konek = mysqli_connect("localhost", "root", "", "simpelkpm_db",3307);
 
 // histori bumil
 $log = mysqli_query($konek, "CREATE TRIGGER after_bumil_update AFTER UPDATE ON tb_bumil FOR EACH ROW BEGIN INSERT INTO tb_log_bumil SET id_bumil=OLD.id_bumil, bulan_baru=new.bulan, bulan_lama=old.bulan, usia_baru=new.usia_kehamilan, usia_lama=old.usia_kehamilan, waktu_perubahan=NOW(); END");
